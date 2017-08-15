@@ -1,0 +1,35 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to @company.title, company_path(@company)
+        
+        = "#{@company.contact_first_name} #{@company.contact_last_name}"
+        br
+        span.icon.is-small = icon 'phone'
+        = @company.contact_phone_number
+        br
+        span.icon.is-small> = icon 'envelope-o'
+        = link_to @company.contact_email, "mailto: #{@company.contact_email}", target: '_blank'
+        
+      .column.has-text-right
+        h3.title.is-size-3 Nouvelle facture
+        
+        .columns
+          .column.is-4-desktop.is-offset-8-desktop
+            = simple_form_for [@company, @invoice] do |f|
+              .field
+                .control
+                  = f.input :title, autofocus: true, label: false, placeholder: 'Objet', input_html: {class: 'is-medium'}
+              .field.is-grouped.is-grouped-right
+                .control
+                  = link_to 'Annuler', company_path(@company), class: 'button is-link'
+                .control
+                  = f.submit 'Enregistrer', class: 'button is-primary'
+
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      article.message.is-warning
+        .message-body Enregistrer l'objet de la facture pour y ajouter des prestations.

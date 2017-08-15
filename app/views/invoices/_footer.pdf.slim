@@ -1,0 +1,12 @@
+#pdf-footer.flexbox.flexbox-between.flexbox-align-bottom
+  p
+  p.has-text-centered
+    span.bold = current_user.company_name
+    br
+    = "#{current_user.company_street} - #{current_user.company_postal_code} #{current_user.company_city}"
+    br
+    = "Immatriculation n°#{current_user.company_siret} au RCS de #{current_user.company_rcs}"
+  p
+    span.page
+    | /
+    span.topage

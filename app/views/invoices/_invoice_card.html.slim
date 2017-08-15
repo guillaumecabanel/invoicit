@@ -1,0 +1,44 @@
+.box.box-with-footer
+  .flexbox.flexbox-between
+    p.control
+      = link_to company_invoice_path(invoice.company, invoice, format: 'pdf'),
+        target: '_blank', class: 'button' do
+        span.icon = icon 'file-pdf-o'
+        
+    = link_to company_invoice_path(invoice.company, invoice, format: 'html'),
+              class: 'button is-link' do
+      = invoice.file_name
+    
+    .flexitem-main
+      .flexbox.flexbox-between
+        span = invoice.title
+        span.is-size-5
+          span.bold> = "#{humanized_money invoice.amount_with_vat} €"
+          span.is-size-7 T.T.C.
+
+.box-footer
+  .flexbox.flexbox-between
+    .button.is-static.is-borderless.has-text-grey-dark
+      = "#{humanized_money invoice.amount} €"
+      | &nbsp;
+      span.is-size-7 H.T.
+    div
+      - if invoice.paid?
+          .button.is-static.is-borderless
+            span.icon.is-small = icon 'check'
+            span.bold.text-is-success = "Payée le #{invoice.paid_at.strftime('%d.%m.%Y')}"
+      - elsif invoice.sent?
+        = link_to company_invoice_paid_path(invoice.company, invoice),
+                  method: :post, class: 'button is-success is-outlined is-borderless' do
+          span.icon.is-small = icon 'check-square-o'
+          span Marquer comme payée
+      - else
+        = link_to edit_company_invoice_path(invoice.company, invoice),
+                  class: 'button is-info is-outlined is-borderless' do
+          span Modifier
+          
+        = link_to company_invoice_send_path(invoice.company, invoice),
+                  method: :post, class: 'button is-primary is-outlined is-borderless' do
+          span.icon.is-small = icon 'paper-plane-o'
+          span Envoyer
+    

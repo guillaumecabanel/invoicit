@@ -1,0 +1,46 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to @invoice.company.title, company_path(@invoice.company)
+        = "#{@invoice.company.contact_first_name} #{@invoice.company.contact_last_name}"
+        br
+        span.icon.is-small = icon 'phone'
+        = @invoice.company.contact_phone_number
+        br
+        span.icon.is-small> = icon 'envelope-o'
+        = link_to @invoice.company.contact_email, "mailto: #{@invoice.company.contact_email}", target: '_blank'
+        
+      .column.has-text-right
+        h3.title.is-size-3
+          = @invoice.file_name
+
+.container
+  .columns
+    .column.is-one-quarter
+      - if @invoice.paid?
+        .field
+          .button.is-static.is-fullwidth
+            span.icon.is-small = icon 'check'
+            span.bold.text-is-success = "Payée le #{@invoice.paid_at.strftime('%d.%m.%Y')}"
+      - elsif @invoice.sent?
+        .field
+          = link_to company_invoice_paid_path(@invoice.company, @invoice),
+                    method: :post, class: 'button is-fullwidth is-success is-outlined' do
+            span.icon.is-small = icon 'check-square-o'
+            span Marquer comme payée
+      - else
+        .field
+          = link_to edit_company_invoice_path(@invoice.company, @invoice),
+                    class: 'button is-fullwidth is-info is-outlined' do
+            span Modifier
+        .field
+          = link_to company_invoice_send_path(@invoice.company, @invoice),
+                    method: :post, class: 'button is-fullwidth is-primary is-outlined' do
+            span.icon.is-small = icon 'paper-plane-o'
+            span Envoyer
+          
+    .column
+      .box
+      

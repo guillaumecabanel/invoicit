@@ -1,0 +1,21 @@
+table.table.is-bordered
+  tr
+    td.has-text-centered Banque
+    td.has-text-centered Guichet
+    td.has-text-centered N°Compte
+    td.has-text-centered Clé
+    td.has-text-centered Devise
+    td.has-text-centered Domiciliation
+  tr
+    td.bold.has-text-centered = bank_account_statement.bank_code
+    td.bold.has-text-centered = bank_account_statement.counter_number
+    td.bold.has-text-centered = bank_account_statement.account_number
+    td.bold.has-text-centered = bank_account_statement.key
+    td.bold.has-text-centered = bank_account_statement.currency
+    td.bold.has-text-centered = bank_account_statement.bank_address
+  tr
+    td.has-text-centered colspan="3" IBAN
+    td.has-text-centered colspan="3" BIC
+  tr
+    td.bold.has-text-centered colspan="3" = bank_account_statement.iban
+    td.bold.has-text-centered colspan="3" = bank_account_statement.bic

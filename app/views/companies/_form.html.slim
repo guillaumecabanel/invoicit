@@ -1,0 +1,65 @@
+= simple_form_for company do |f|
+  .field.is-horizontal
+    .field-label
+    .field-body
+      .field
+        .control.is-expanded
+          = f.input :title, autofocus: true, label: false, placeholder: 'Nom de la société'
+  br
+  .field.is-horizontal
+    .field-label.is-normal
+      label.label Adresse
+    .field-body
+      .field
+        .control.is-expanded
+          = f.input :address_street, label: false, placeholder: 'Rue'
+
+  .field.is-horizontal
+    .field-label
+    .field-body
+      .field
+        .control.is-expanded
+          = f.input :address_postal_code, label: false, placeholder: 'Code postal'
+      .field
+        .control.is-expanded
+          = f.input :address_city, label: false, placeholder: 'Ville'
+  
+  br
+  .field.is-horizontal
+    .field-label.is-normal
+      label.label Contact
+    .field-body
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :contact_first_name, label: false, placeholder: 'Prénom'
+          span.icon.is-small.is-left = icon 'user'
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :contact_last_name, label: false, placeholder: 'Nom'
+          span.icon.is-small.is-left = icon 'user'
+
+  .field.is-horizontal
+    .field-label
+    .field-body
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :contact_email, label: false, placeholder: 'Email'
+          span.icon.is-small.is-left = icon 'envelope-o'
+
+  .field.is-horizontal
+    .field-label
+    .field-body
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :contact_phone_number, label: false, placeholder: 'Numéro de téléphone'
+          span.icon.is-small.is-left = icon 'phone'
+          
+  hr
+  .field.is-grouped.is-grouped-right
+    .control
+      = link_to 'Annuler', companies_path, class: 'button is-link'
+    .control
+      - if @company.title
+        = f.submit 'Mettre à jour', class: 'button is-primary'
+      - else
+        = f.submit 'Ajouter', class: 'button is-primary'

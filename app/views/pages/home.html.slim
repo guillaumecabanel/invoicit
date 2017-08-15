@@ -1,0 +1,18 @@
+section.hero
+  .main-background-image 
+    .hero-body
+      .container
+        h1.title.is-1 InvoicIt
+        h1.subtitle.is-1 Gérer et envoyer facilement vos factures à vos clients.
+        
+        br
+        .columns
+          .column.is-6-desktop.is-offset-3-desktop
+            .box
+              .columns
+                .column
+                  .field
+                    = link_to 'Se connecter', new_user_session_path, class: 'button is-link is-fullwidth'
+                .column
+                  .field
+                    = link_to 'S\'inscrire', new_user_registration_path, class: 'button is-primary is-fullwidth is-large'

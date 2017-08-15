@@ -1,0 +1,57 @@
+#pdf-page, #pdf-header, #pdf-footer{
+  background-color: #ffffff;
+  font-size: 12px;
+}
+
+#pdf-page{
+  padding: 0 0.5cm;
+  p.is-small{
+    font-size: 10px;
+  }
+  h1, h2, h3{
+    margin-bottom: 7px;
+  }
+
+  h2{
+    font-size: 1.3rem;
+  }
+  h3{
+    font-size: 1.1rem;
+  }
+
+  th, td{
+    border-left: none;
+    border-right: none;
+  }
+  thead{
+    th{
+      border-top: none;
+    }
+  }
+  tfoot{
+    th, td{
+      border-bottom: none;
+    }
+  }
+}
+
+#pdf-header, #pdf-footer{
+  padding: 0.5cm 0;
+}
+
+#pdf-footer{
+  font-size: 8px;
+}
+
+#conditions{
+  padding-left: 1cm;
+  flex: 1 0 auto;
+}
+#synthesis{
+  min-width: 33%;
+}
+
+// Page Breaks
+.alwaysbreak { page-break-before: always; }
+.nobreak:before { clear:both; }
+.nobreak { page-break-inside: avoid; }

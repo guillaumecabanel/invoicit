@@ -1,0 +1,52 @@
+#pdf-page
+  br
+  br
+  br
+  .flexbox.flexbox-between.flexbox-align-top
+    div
+      h2.has-text-primary = current_user.company_name
+      p.is-small = current_user.phone_number
+      p.is-small = current_user.email
+    div.has-text-right
+      h4 = @invoice.date
+      h4
+        | Facture
+        =< @invoice.id_code
+  br
+  .flexbox.flexbox-between.flexbox-align-top
+    .flexitem-main
+      h3.is-4 Objet
+      p.bold = @invoice.title
+    .flexitem-grow
+    .flexitem-grow
+    .flexitem-grow
+      h3.is-4 Client
+      p.bold = @invoice.company.title
+      p = @invoice.company.address_street
+      p = "#{@invoice.company.address_postal_code} - #{@invoice.company.address_city}"
+
+  br
+  h2.is-4 Prestations
+  #prestations
+  = render 'tasks/index.html.slim', invoice: @invoice, task: nil
+
+  .nobreak
+    h2.is-4 Paiement
+    p Date de paiement&nbsp;: à réception de la facture.
+    p Mode de paiement&nbsp;: virement.
+    p Escompte pour paiement anticipé&nbsp;: néant.
+    
+    br
+    .flexbox.flexbox-between.flexbox-align-top
+      #synthesis
+        h3.is-5 Synthèse
+        = render 'invoices/payment_synthesis.html.slim', invoice: @invoice
+    
+      #conditions
+        h3.is-5 Conditions
+        = render 'invoices/payment_conditions.html.slim'
+  
+  br
+  .nobreak
+    h3.is-5 Relevé d'identité bancaire
+    = render 'bank_account_statements/show.html.slim', bank_account_statement: @bank_account_statement

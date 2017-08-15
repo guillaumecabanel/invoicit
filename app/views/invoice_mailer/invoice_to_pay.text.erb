@@ -1,0 +1,7 @@
+<%= "Bonjour #{@invoice.company.contact_first_name}," %>
+
+<%= "En pièce jointe, la facture #{@invoice.id_code}." %>
+
+Bonne journée,
+
+<%= @invoice.company.user.first_name %>

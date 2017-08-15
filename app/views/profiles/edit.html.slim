@@ -1,0 +1,90 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Profil
+  
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      .box
+        = simple_form_for @user, url: profile_path do |f|
+          .field.is-horizontal
+            .field-label.is-normal
+              label.label Vous
+            .field-body
+              .field
+                  .control.is-expanded.has-icons-left
+                    = f.input :first_name, label: false,
+                                         placeholder: 'Prénom'
+                    span.icon.is-small.is-left = icon 'user'
+              .field
+                  .control.is-expanded.has-icons-left
+                    = f.input :last_name, label: false,
+                                         placeholder: 'Nom'
+                    span.icon.is-small.is-left = icon 'user'
+          
+          .field.is-horizontal
+            .field-label
+            .field-body
+              .field
+                .control.is-expanded.has-icons-left
+                  = f.input :email, label: false, placeholder: 'Email'
+                  span.icon.is-small.is-left = icon 'envelope'
+          .field.is-horizontal
+            .field-label
+            .field-body
+              .field
+                .control.is-expanded.has-icons-left
+                  = f.input :phone_number, label: false, placeholder: 'N° de téléphone'
+                  span.icon.is-small.is-left = icon 'phone'
+                
+          br
+          .field.is-horizontal
+            .field-label.is-normal
+              label.label Société
+            .field-body
+              .field
+                .control.is-expanded
+                  = f.input :company_name, label: false, placeholder: 'Nom de la société'
+
+          .field.is-horizontal
+            .field-label.is-normal
+              label.label
+            .field-body
+              .field
+                .control.is-expanded
+                  = f.input :company_street, label: false, placeholder: 'Rue'
+
+          .field.is-horizontal
+            .field-label
+            .field-body
+              .field
+                .control.is-expanded
+                  = f.input :company_postal_code, label: false, placeholder: 'Code postal'
+              .field
+                .control.is-expanded
+                  = f.input :company_city, label: false, placeholder: 'Ville'
+                  
+          .field.is-horizontal
+            .field-label
+            .field-body
+              .field
+                .control.is-expanded
+                  = f.label :company_rcs, label: 'Immatriculation'
+                  = f.input :company_rcs, label: false, placeholder: 'RCS'
+                .help Ville du tribunal de commerce (RCS)
+              .field
+                .control.is-expanded
+                  label.label &nbsp;
+                  = f.input :company_siret, label: false, placeholder: 'SIRET'
+                .help SIRET
+        
+        
+          hr
+          .field.is-grouped.is-grouped-right
+            - if current_user.first_name.present?
+              .control
+                = link_to 'Annuler', companies_path, class: 'button is-link'
+            .control
+              = f.submit 'Mettre à jour', class: 'button is-primary'

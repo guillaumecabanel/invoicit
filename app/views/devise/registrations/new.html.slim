@@ -1,0 +1,41 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Inscription
+
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      .box
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.error_notification
+          .field
+            = f.label :email, required: true
+            .control.is-expanded.has-icons-left
+              = f.input :email, required: true, autofocus: true,
+                                placeholder: 'Email', label: false
+              span.icon.is-small.is-left = icon 'envelope'
+              
+          .field
+            = f.label :password, label: 'Mot de passe', required: true
+            .control.is-expanded.has-icons-left
+              = f.input :password, required: true, label: false,
+                                   placeholder: 'Mot de passe'
+              span.icon.is-small.is-left = icon 'lock'
+          / .field
+          /   = f.label :password_confirmation, label: 'Confirmation', required: true
+          /   .control.is-expanded.has-icons-left
+          /     = f.input :password_confirmation, required: true, label: false,
+          /                          placeholder: ''
+          /     span.icon.is-small.is-left = icon 'lock'
+
+
+
+          hr
+          .field.is-grouped.is-grouped-right
+            .control
+              = link_to "Déjà un compte ?", new_user_session_path, class: 'button is-link'
+
+            .control
+              = f.submit 'Inscription', class: 'button is-primary'

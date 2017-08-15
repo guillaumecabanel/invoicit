@@ -1,0 +1,20 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to company.title, company_path(company)
+        .field
+          = "#{company.contact_first_name} #{company.contact_last_name}"
+        .field
+          span.icon.is-small = icon 'phone'
+          = pretty_phone_number company.contact_phone_number
+        .field
+          span.icon.is-small> = icon 'envelope-o'
+          = link_to company.contact_email, "mailto: #{company.contact_email}", target: '_blank'
+        
+        .field
+          = link_to 'Éditer', edit_company_path(company), class: 'button is-small is-link'
+      
+      .column
+        = render 'companies/company_stats', company: company

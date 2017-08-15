@@ -1,0 +1,23 @@
+- if invoices_to_send.any?
+  h3.is-title.is-size-4.has-text-centered À envoyer
+  br
+  - invoices_to_send.each do |invoice|
+    = render 'invoices/invoice_card', invoice: invoice
+  
+- if invoices_sent.any?
+  - invoices_sent.each_with_index do |invoice, index|
+    - if index > 0
+      - if invoice.updated_at.month < invoices_sent[index - 1].updated_at.month
+        hr
+        h3.is-title.is-size-4.has-text-centered = invoice.updated_at.strftime('%B %Y')
+        br
+    - else
+      h3.is-title.is-size-4.has-text-centered = invoice.updated_at.strftime('%B %Y')
+      br
+      
+    = render 'invoices/invoice_card', invoice: invoice
+- if invoices_to_send.empty? && invoices_sent.empty?
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      article.message.is-warning
+        .message-body Pas encore de facture.

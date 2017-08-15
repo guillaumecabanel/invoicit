@@ -1,0 +1,19 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Clients
+          
+      .column
+        = render 'companies_stats', companies: @companies
+
+.container
+  .columns
+    .column.is-one-quarter
+      .field
+        = link_to 'Nouveau client', new_company_path,
+                  class: 'button is-fullwidth is-primary is-outlined'
+
+    .column
+      - @companies.each do |company|
+        = render 'company_card', company: company

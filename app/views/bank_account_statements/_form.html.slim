@@ -1,0 +1,62 @@
+.box
+  .container
+    .columns
+      .column.is-half
+        h2.title.is-size-2 Informations bancaires
+  
+.container
+  .columns
+    .column.is-8-desktop.is-offset-2-desktop
+      .box
+        = simple_form_for bank_account_statement, url: bank_account_statement_path do |f|
+
+          .columns
+            .column.is-3
+              .field
+                .control.is-expanded
+                  = f.input :bank_code, label: 'Banque', placeholder: 'Banque'
+            .column.is-3
+              .field
+                .control.is-expanded
+                  = f.input :counter_number, label: 'Guichet', placeholder: 'Guichet'
+            .column
+              .field
+                .control.is-expanded
+                  = f.input :account_number, label: 'N° Compte', placeholder: 'N° Compte'
+            .column.is-1
+              .field
+                .control.is-expanded
+                  = f.input :key, label: 'Clé', placeholder: 'Clé'
+          
+          .columns 
+            .column.is-8
+              .field
+                .control.is-expanded
+                  = f.input :bank_address, label: 'Domiciliation', placeholder: 'Domiciliation'
+            .column
+              .field
+                = f.label :currency, label: 'Devise'
+                .control.is-expanded
+                  = f.input :currency, label: false, collection: %w(EUR), selected: 'EUR'
+
+          .columns 
+            .column.is-8
+              .field
+                .control.is-expanded
+                  = f.input :iban, label: 'IBAN', placeholder: 'IBAN'
+            .column
+              .field
+                .control.is-expanded
+                  = f.input :bic, label: 'BIC', placeholder: 'BIC'
+
+        
+        
+          hr
+          .field.is-grouped.is-grouped-right
+            .control
+              = link_to 'Annuler', companies_path, class: 'button is-link'
+            .control
+              - if current_user.bank_account_statement.nil?
+                = f.submit 'Enregistrer', class: 'button is-primary'
+              - else
+                = f.submit 'Mettre à jour', class: 'button is-primary'

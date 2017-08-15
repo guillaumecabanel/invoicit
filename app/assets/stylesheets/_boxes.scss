@@ -1,0 +1,13 @@
+.box-with-footer{
+  margin-bottom: 0 !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.box-footer{
+  margin-bottom: 1.5rem;
+  background-color: $white-ter;
+  border-bottom-left-radius: $box-radius;
+  border-bottom-right-radius: $box-radius;
+  box-shadow: $box-shadow;
+}

@@ -1,0 +1,17 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Factures
+          
+      .column
+        = render 'companies/companies_stats', companies: @companies
+
+.container
+  .columns
+    .column.is-one-quarter
+      .field
+        = link_to 'Nouveau client', new_company_path,
+                  class: 'button is-fullwidth is-primary is-outlined'
+    .column
+      = render 'invoices/index', invoices_sent: @invoices_sent, invoices_to_send: @invoices_to_send

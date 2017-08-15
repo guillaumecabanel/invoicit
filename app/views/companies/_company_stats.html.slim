@@ -1,0 +1,28 @@
+nav.level
+  .level-item.has-text-centered
+    div
+      p.has-text-centered.heading
+        | Payé
+        small< H.T.
+      p.has-text-centered.title.has-text-success = pretty_k_money company.total_paid_without_vat
+  
+  .level-item.has-text-centered
+    div
+      p.has-text-centered.heading
+        | Payé
+        small< T.T.C
+      p.has-text-centered.title = pretty_k_money company.total_paid_with_vat
+  
+  .level-item.has-text-centered
+    div
+      p.has-text-centered.heading
+        | Reste à payer
+        small< T.T.C
+      p.has-text-centered.title.has-text-info = pretty_k_money company.to_be_paid_with_vat
+      
+  .level-item.has-text-centered
+    div
+      p.has-text-centered.heading
+        | Reste à envoyer
+        small< T.T.C
+      p.has-text-centered.title.has-text-danger = pretty_k_money company.to_be_sent_with_vat

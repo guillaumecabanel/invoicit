@@ -1,0 +1,10 @@
+= render 'companies/nav', company: @company
+
+.container
+  .columns
+    .column.is-one-quarter
+      .field
+        = link_to 'Nouvelle facture', new_company_invoice_path(@company),
+                  class: 'button is-fullwidth is-primary is-outlined'
+    .column
+      = render 'invoices/index', invoices_sent: @invoices_sent, invoices_to_send: @invoices_to_send

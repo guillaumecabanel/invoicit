@@ -1,0 +1,11 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Nouveau client
+  
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      .box
+        = render 'companies/form', company: @company

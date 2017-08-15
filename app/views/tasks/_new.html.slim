@@ -1,0 +1,61 @@
+= simple_form_for [company, invoice, task] do |f|
+  tr
+    td = f.input :title, autofocus: true, label: false, placeholder: 'Description'
+    td
+      .control
+        .field.has-addons
+          .control.has-icons-right
+            = f.input :unit_price, as: :float, label: false,
+                                  input_html: {value: ''}, placeholder: 'P.U.'
+            span.icon.is-right = icon 'eur'
+    td = f.input :quantity, label: false, placeholder: 'Quantité'
+    td
+      .control
+        .field.has-addons
+          .control.has-icons-right
+            = f.input :price_without_vat, label: false, disabled: true
+            span.icon.is-right = icon 'eur'
+    td
+      .control
+        .field.has-addons
+          .control.has-icons-right
+            = f.input :vat, label: false, disabled: true
+            span.icon.is-right = icon 'eur'
+    td
+      .control
+        .field.has-addons
+          .control.has-icons-right
+            input#task_price_with_vat.input disabled="true"
+              span.icon.is-right = icon 'eur'
+
+    td = f.submit 'Ajouter', class: 'card-footer-item button is-link'
+
+= content_for(:js) do
+  javascript:
+    $(document).ready(function(){
+      $('input').change(function(){
+        setPrices();
+      });
+      $('input').blur(function(){
+        setPrices();
+      });
+    })
+    
+    function setPrices(){
+      if (
+          ($('#task_unit_price').val() != "") && 
+          ($('#task_quantity').val() != "")
+      ){
+            var taskUnitPrice = Number($('#task_unit_price').val());
+            var taskQuantity = Number($('#task_quantity').val());
+            var taskPriceWithoutVat =  taskUnitPrice * taskQuantity;
+            var taskVat = taskPriceWithoutVat * 0.2;
+            $('#task_price_without_vat').val(taskPriceWithoutVat);
+            $('#task_vat').val(taskVat);
+            $('#task_price_with_vat').val(taskPriceWithoutVat + taskVat);
+      } else {
+        $('#task_price_without_vat').val('');
+        $('#task_vat').val('');
+        $('#task_price_with_vat').val('');
+      }
+    }

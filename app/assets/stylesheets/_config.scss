@@ -1,0 +1,53 @@
+$weight-light: 300 !default;
+$weight-normal: 400 !default;
+$weight-medium: 500 !default;
+$weight-semibold: 600 !default;
+$weight-bold: 700 !default;
+
+$body-background: $white-bis;
+$body-size: 16px;
+
+$link: $primary !default;
+$box-link-hover-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px $link !default;
+
+
+html{
+  height: 100%;
+}
+
+// Body
+body{
+  background-color: $body-background;
+  font-size: $body-size;
+  position: relative;
+  min-height: 100%;
+}
+
+// Title
+$title-color: $primary;
+$title-weight: $weight-semibold;
+
+// Paragraphe
+p.justify{
+  text-align: justify;
+}
+
+
+.main-content{
+  min-height: 100%;
+  padding-bottom: 4rem;
+}
+
+footer, .footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem !important;
+}
+
+.box.is-hoverable{
+  &:hover{
+    background-color: $white-bis;
+  }
+}
