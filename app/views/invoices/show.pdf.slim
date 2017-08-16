@@ -4,9 +4,9 @@
   br
   .flexbox.flexbox-between.flexbox-align-top
     div
-      h2.has-text-primary = current_user.company_name
-      p.is-small = current_user.phone_number
-      p.is-small = current_user.email
+      h2.has-text-primary = @invoice.company.user.company_name
+      p.is-small = @invoice.company.user.phone_number
+      p.is-small = @invoice.company.user.email
     div.has-text-right
       h4 = @invoice.date
       h4
