@@ -7,6 +7,8 @@ class Company < ApplicationRecord
             :to_be_paid_with_vat_cents,
             :to_be_sent_with_vat_cents
 
+  validates :contact_email, :contact_first_name, :contact_last_name, presence: true
+
   def title_to_snake_case
     title.downcase.split.join('_')
   end
