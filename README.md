@@ -19,10 +19,10 @@ Find a bug or want to improve this app? Please do!
 
 1.  Configure your environment variables
     ```shell
-    cp config/application_example.yml application.yml
+    cp config/application_example.yml config/application.yml
     ```
 
-    Edit `application.yml`.
+    Edit `config/application.yml`.
 
 1.  Code
 
