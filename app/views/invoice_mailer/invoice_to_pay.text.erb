@@ -1,7 +1,9 @@
-<%= "Bonjour #{@invoice.company.contact_first_name}," %>
+Bonjour <%= @invoice.company.contact_first_name %>,
 
-<%= "En pièce jointe, la facture #{@invoice.id_code}." %>
+En pièce jointe, la facture <%= @invoice.id_code %>.
 
 Bonne journée,
-
 <%= @invoice.company.user.first_name %>
+
+---
+Cet email vous a été envoyé par <<%= @invoice.company.user.email %>> via le service <%= root_url %>. Si vous considérez ce message comme du spam merci de contacter <<%= ENV['APP_EMAIL'] %>>.

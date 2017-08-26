@@ -2,3 +2,14 @@ p = "Bonjour #{@invoice.company.contact_first_name},"
 p = "En pièce jointe, la facture #{@invoice.id_code}."
 p Bonne journée,
 = @invoice.company.user.first_name
+
+hr
+p
+  small
+    | Cet email vous a été envoyé par
+    =<> link_to @invoice.company.user.email, "mailto:#{@invoice.company.user.email}"
+    | via le service
+    =< link_to ENV['APP_NAME'], root_url
+    | . Si vous considérez ce message comme du spam merci de contacter
+    =< link_to ENV['APP_EMAIL'], "mailto:#{ENV['APP_EMAIL']}"
+    | .

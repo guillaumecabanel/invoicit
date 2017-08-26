@@ -1,0 +1,14 @@
+
+APP_EMAIL:
+APP_NAME:
+
+# development:
+
+production:
+  RAILS_ENV: production
+  SECRET_KEY_BASE:
+  # To get faster deploy, cache dependencies:
+  # CACHE_DEPENDENCIES: true
+
+  HOST:
+  POSTMARK_API_KEY:
