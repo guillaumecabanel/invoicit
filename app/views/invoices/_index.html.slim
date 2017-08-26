@@ -3,18 +3,18 @@
   br
   - invoices_to_send.each do |invoice|
     = render 'invoices/invoice_card', invoice: invoice
-  
+
 - if invoices_sent.any?
   - invoices_sent.each_with_index do |invoice, index|
     - if index > 0
-      - if invoice.updated_at.month < invoices_sent[index - 1].updated_at.month
+      - if invoice.sent_at.month < invoices_sent[index - 1].sent_at.month
         hr
-        h3.is-title.is-size-4.has-text-centered = invoice.updated_at.strftime('%B %Y')
+        h3.is-title.is-size-4.has-text-centered = invoice.sent_at.strftime('%B %Y')
         br
     - else
-      h3.is-title.is-size-4.has-text-centered = invoice.updated_at.strftime('%B %Y')
+      h3.is-title.is-size-4.has-text-centered = invoice.sent_at.strftime('%B %Y')
       br
-      
+
     = render 'invoices/invoice_card', invoice: invoice
 - if invoices_to_send.empty? && invoices_sent.empty?
   .columns
