@@ -17,7 +17,6 @@ class InvoiceMailer < ApplicationMailer
       )
     )
     mail(
-      from:       @invoice.company.user.email,
       'reply-to': @invoice.company.user.email,
       bcc:         ENV['APP_EMAIL'],
       to:         @receiver_mail,
