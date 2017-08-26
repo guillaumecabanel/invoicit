@@ -17,7 +17,7 @@ class InvoiceMailer < ApplicationMailer
       )
     )
     mail(
-      from:       ENV['APP_SENDER_EMAIL'],
+      from:       "\"#{@invoice.company.user.first_name} #{@invoice.company.user.last_name}\" <#{ENV['APP_SENDER_EMAIL']}>",
       'reply-to': @invoice.company.user.email,
       bcc:         ENV['APP_EMAIL'],
       to:         @receiver_mail,
