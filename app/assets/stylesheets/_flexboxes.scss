@@ -30,17 +30,8 @@
 }
 
 .flexitem{
-  &-size-10{
-    flex: 0 0 10%;
-  }
-  &-size-33{
-    flex: 0 0 33%;
-  }
-  &-size-50{
-    flex: 1 0 50%;
-  }
-  &-grow{
-    flex: 1 1 auto;
+  &-size-40{
+    max-width: 40%;
   }
   &-main{
     flex: 1 0 auto;

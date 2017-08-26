@@ -7,19 +7,17 @@
       h2.has-text-primary = @invoice.company.user.company_name
       p.is-small = @invoice.company.user.phone_number
       p.is-small = @invoice.company.user.email
-    div.has-text-right
+    .flexitem-size-40.has-text-right
       h4 = @invoice.date
       h4
         | Facture
         =< @invoice.id_code
   br
   .flexbox.flexbox-between.flexbox-align-top
-    .flexitem-main
+    .flexitem-size-40
       h3.is-4 Objet
       p.bold = @invoice.title
-    .flexitem-grow
-    .flexitem-grow
-    .flexitem-grow
+    .flexitem-size-40
       h3.is-4 Client
       p.bold = @invoice.company.title
       p = @invoice.company.address_street
@@ -35,17 +33,17 @@
     p Date de paiement&nbsp;: à réception de la facture.
     p Mode de paiement&nbsp;: virement.
     p Escompte pour paiement anticipé&nbsp;: néant.
-    
+
     br
     .flexbox.flexbox-between.flexbox-align-top
       #synthesis
         h3.is-5 Synthèse
         = render 'invoices/payment_synthesis.html.slim', invoice: @invoice
-    
+
       #conditions
         h3.is-5 Conditions
         = render 'invoices/payment_conditions.html.slim'
-  
+
   br
   .nobreak
     h3.is-5 Relevé d'identité bancaire
