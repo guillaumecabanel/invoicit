@@ -46,13 +46,13 @@ table.table.is-striped.is-fullwidth
       th Total
       th
       th
-      th
+      th.has-text-right
         = humanized_money invoice.amount
         | &nbsp;€
-      th
+      th.has-text-right
         = humanized_money invoice.amount_with_vat - invoice.amount
         | &nbsp;€
-      th
+      th.has-text-right
         = humanized_money invoice.amount_with_vat
         | &nbsp;€
       - if task
