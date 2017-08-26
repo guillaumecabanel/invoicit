@@ -9,10 +9,10 @@
     - if index > 0
       - if invoice.sent_at.month < invoices_sent[index - 1].sent_at.month
         hr
-        h3.is-title.is-size-4.has-text-centered = invoice.sent_at.strftime('%B %Y')
+        h3.is-title.is-size-4.has-text-centered = l(invoice.sent_at, format: '%B %Y')
         br
     - else
-      h3.is-title.is-size-4.has-text-centered = invoice.sent_at.strftime('%B %Y')
+      h3.is-title.is-size-4.has-text-centered = l(invoice.sent_at, format: '%B %Y')
       br
 
     = render 'invoices/invoice_card', invoice: invoice
