@@ -2,33 +2,41 @@ table.table.is-striped.is-fullwidth
   thead
     tr
       th Description
-      th Prix unitaire
-      th Quantité
-      th Prix H.T.
-      th T.V.A.
-      th Prix T.T.C
+      th.has-text-centered
+        small Prix unitaire
+      th.has-text-centered
+        small Quantité
+      th.has-text-centered
+        small Prix H.T.
+      th.has-text-centered
+        small T.V.A.
+      th.has-text-centered
+        small Prix T.T.C
       - if task
         th
-  
+
   tbody
     - invoice.tasks.each do |invoice_task|
       tr
-        td = invoice_task.title
-        td = "#{humanized_money invoice_task.unit_price} €"
-        td = invoice_task.quantity
-        td.task-price-without-vat
-          span.is-number> = invoice_task.price_without_vat
-          | €
-        td.task-vat
-          span.is-number> = invoice_task.vat
-          | €
-        td.task-price-with-vat
-          span.is-number> = invoice_task.price_with_vat
-          | €
-          
+        td.description = invoice_task.title
+        td.has-text-right
+          = humanized_money invoice_task.unit_price
+          | &nbsp;€
+        td.has-text-right
+          = invoice_task.quantity
+        td.has-text-right
+          = humanized_money invoice_task.price_without_vat
+          | &nbsp;€
+        td.has-text-right
+          = humanized_money invoice_task.vat
+          | &nbsp;€
+        td.has-text-right
+          = humanized_money invoice_task.price_with_vat
+          | &nbsp;€
+
         -if task
           td = link_to 'Supprimer', company_invoice_task_path(invoice_task.invoice.company, invoice_task.invoice, invoice_task), method: :delete
-        
+
     -if task
       = render 'tasks/new', company: company,
                             invoice: invoice,
@@ -38,36 +46,14 @@ table.table.is-striped.is-fullwidth
       th Total
       th
       th
-      th#total-price-without-vat
-      th#total-vat
-      th#total-price-with-vat
+      th
+        = humanized_money invoice.amount
+        | &nbsp;€
+      th
+        = humanized_money invoice.amount_with_vat - invoice.amount
+        | &nbsp;€
+      th
+        = humanized_money invoice.amount_with_vat
+        | &nbsp;€
       - if task
         th
-
-= content_for(:js) do
-  javascript:
-    $(document).ready(function(){
-      sumColumns();
-      $('input').blur(function(){
-        sumColumns();
-      })
-      $('input').change(function(){
-        sumColumns();
-      })
-    })
-    
-    function sumColumn(columnClass, sumId){
-      var total = 0;
-      $(columnClass).each(function(i, cell){
-        price = Number($(cell).find('.is-number').text());
-        total += price;
-      })
-      $(sumId).text(total + " €");
-      return total
-    }
-    
-    function sumColumns(){
-      sumColumn('.task-price-without-vat', '#total-price-without-vat');
-      sumColumn('.task-vat', '#total-vat');
-      sumColumn('.task-price-with-vat', '#total-price-with-vat');
-    }

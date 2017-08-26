@@ -2,11 +2,17 @@ table.table.is-fullwidth
   tbody
     tr
       th Montant H.T.
-      td.has-text-right = "#{humanized_money invoice.amount} €"
+      td.has-text-right
+        = humanized_money invoice.amount
+        | &nbsp;€
     tr
       th Montant T.V.A.
-      td.has-text-right = "#{humanized_money(invoice.amount_with_vat - invoice.amount)} €"
+      td.has-text-right
+        = humanized_money(invoice.amount_with_vat - invoice.amount)
+        | &nbsp;€
   tfoot
     tr
       th Net à payer
-      td.has-text-right.bold = "#{humanized_money invoice.amount_with_vat} €"
+      td.has-text-right.bold
+        = humanized_money invoice.amount_with_vat
+        | &nbsp;€
