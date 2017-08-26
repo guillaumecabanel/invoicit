@@ -16,7 +16,13 @@ class InvoiceMailer < ApplicationMailer
         }
       )
     )
-    mail(to: @receiver_mail, subject: "Facture #{@invoice.id_code}")
+    mail(
+      from:       @invoice.company.user.email,
+      'reply-to': @invoice.company.user.email,
+      bcc:         ENV['APP_EMAIL'],
+      to:         @receiver_mail,
+      subject:    "Facture #{@invoice.id_code}"
+    )
 
   end
 end
