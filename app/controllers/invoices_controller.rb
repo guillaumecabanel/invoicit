@@ -81,8 +81,8 @@ class InvoicesController < ApplicationController
     authorize @invoice
 
     if @invoice.save
-      InvoiceMailer.invoice_to_pay(@invoice).deliver_later
       @invoice.update(sent_at: Time.now)
+      InvoiceMailer.invoice_to_pay(@invoice).deliver_later
       redirect_to company_path(@company)
     end
   end
