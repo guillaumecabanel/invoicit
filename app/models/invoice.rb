@@ -2,6 +2,7 @@ class Invoice < ApplicationRecord
   belongs_to :company
 
   has_many :tasks, dependent: :destroy
+  has_one :email_message, dependent: :destroy
 
   monetize :amount_cents, :amount_with_vat_cents
   before_save :set_amount_cents, :set_amount_with_vat_cents
