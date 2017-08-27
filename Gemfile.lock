@@ -1,7 +1,18 @@
+GIT
+  remote: https://github.com/guillaumecabanel/letsencrypt_http_challenge.git
+  revision: 4ab833ac90741bb63db58dce17c8bf1b354b8665
+  specs:
+    letsencrypt_http_challenge (0.0.3)
+      acme-client (~> 0.3.0)
+      figaro
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    acme-client (0.3.7)
+      faraday (~> 0.9, >= 0.9.1)
+      json-jwt (~> 1.2, >= 1.2.3)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -47,6 +58,7 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bindata (2.4.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
@@ -64,6 +76,8 @@ GEM
     erubi (1.6.1)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -80,6 +94,12 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.1.0)
+    json-jwt (1.7.2)
+      activesupport
+      bindata
+      multi_json (>= 1.3)
+      securecompare
+      url_safe_base64
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -104,6 +124,7 @@ GEM
       money (~> 6.8.1)
       railties (>= 3.0)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -176,6 +197,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    securecompare (1.0.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -204,6 +226,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    url_safe_base64 (0.2.2)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -225,6 +248,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
+  letsencrypt_http_challenge!
   listen (~> 3.0.5)
   money-rails
   pg
