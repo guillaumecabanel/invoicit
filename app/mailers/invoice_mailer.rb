@@ -8,19 +8,22 @@ class InvoiceMailer < ApplicationMailer
       render_to_string(
         pdf: "#{@invoice.company.title_to_snake_case}-#{@invoice.id_code}",
         template: 'invoices/show.pdf.slim',
-        layout: 'pdf',
-        footer: {
-          html: {
-            template: 'invoices/_footer.pdf.slim'
+        layout: 'pdf'
+      ),
+      footer: {
+        content: render_to_string(
+          {
+            template: 'invoices/_footer.pdf.slim',
+            layout: 'pdf'
           }
-        }
-      )
+        )
+      }
     )
     mail(
       from:       "\"#{@invoice.company.user.first_name} #{@invoice.company.user.last_name}\" <#{ENV['APP_SENDER_EMAIL']}>",
       'reply-to': @invoice.company.user.email,
       cc:         @invoice.company.user.email,
-      bcc:        "\"#{APP_NAME} service\" <#{ENV['APP_EMAIL']}>",
+      bcc:        "\"#{ENV['APP_NAME']} service\" <#{ENV['APP_EMAIL']}>",
       to:         @receiver_mail,
       subject:    "Facture #{@invoice.id_code}"
     )

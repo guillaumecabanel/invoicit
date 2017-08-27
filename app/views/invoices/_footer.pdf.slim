@@ -1,11 +1,11 @@
 #pdf-footer.flexbox.flexbox-between.flexbox-align-bottom
   p
   p.has-text-centered.flexitem-main
-    span.bold = current_user.company_name
+    span.bold = @invoice.company.user.company_name
     br
-    = "#{current_user.company_street} - #{current_user.company_postal_code} #{current_user.company_city}"
+    = "#{@invoice.company.user.company_street} - #{@invoice.company.user.company_postal_code} #{@invoice.company.user.company_city}"
     br
-    = "Immatriculation n°#{current_user.company_siret} au RCS de #{current_user.company_rcs}"
+    = "Immatriculation n°#{@invoice.company.user.company_siret} au RCS de #{@invoice.company.user.company_rcs}"
   p
     span.page
     | /
