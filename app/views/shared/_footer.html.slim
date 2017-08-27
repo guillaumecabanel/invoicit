@@ -3,6 +3,8 @@ footer.footer
     p.has-text-right
       | Code source sous license
       =< link_to 'MIT', 'https://github.com/guillaumecabanel/invoicit/blob/master/LICENSE'
-      | . Invoicit est un projet open source : améliorer-le sur
+      | .
+      =<> ENV['APP_NAME']
+      | est un projet open source : améliorer-le sur
       =< link_to 'GitHub', 'https://github.com/guillaumecabanel/invoicit'
       | .

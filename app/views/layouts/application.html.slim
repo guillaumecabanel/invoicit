@@ -4,7 +4,7 @@ html lang="fr"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    title Simple invoice
+    title = ENV['APP_NAME']
     = csrf_meta_tags
 
     = action_cable_meta_tag
@@ -14,7 +14,7 @@ html lang="fr"
       = yield
     - else
       = render 'shared/header'
-      .main-content 
+      .main-content
         = yield
       = render 'shared/footer'
     = javascript_include_tag 'application'
