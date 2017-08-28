@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827135550) do
+ActiveRecord::Schema.define(version: 20170828084629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170827135550) do
     t.datetime "updated_at", null: false
     t.date "paid_at"
     t.string "title"
-    t.date "sent_at"
+    t.datetime "sent_at"
     t.integer "amount_cents", default: 0, null: false
     t.integer "amount_with_vat_cents", default: 0, null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
