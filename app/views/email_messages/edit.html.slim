@@ -1,0 +1,60 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to @invoice.company.title, company_path(@invoice.company)
+        = "#{@invoice.company.contact_first_name} #{@invoice.company.contact_last_name}"
+        br
+        span.icon.is-small = icon 'phone'
+        = @invoice.company.contact_phone_number
+        br
+        span.icon.is-small> = icon 'envelope-o'
+        = link_to @invoice.company.contact_email, "mailto: #{@invoice.company.contact_email}", target: '_blank'
+
+      .column.has-text-right
+        h3.title.is-size-3
+          = @invoice.file_name
+
+.container
+  .columns
+    .column.is-one-quarter
+      article.message
+        .message-header
+          p.has-text-right
+            span = icon 'info-circle'
+
+        .message-body
+          p.bold.is-size-6.has-text-grey
+            | Prochain n° de facture
+          p = next_id_code @invoice
+          hr
+          p.bold.is-size-6.has-text-grey
+            | Objet de la facture
+          p = @invoice.title
+          hr
+          p.bold.is-size-6.has-text-grey
+            | Montant
+          p
+            span.bold> = "#{humanized_money @invoice.amount_with_vat} €"
+            span.is-size-7 T.T.C.
+
+
+    .column
+      .box
+        = simple_form_for [@invoice.company, @invoice, @invoice.email_message] do |f|
+          .field
+            .control
+              = f.input :subject, label: 'Objet', placeholder: 'Objet'
+
+          .field
+            .control
+              = f.input :content, label: 'Message', input_html: {rows: 10}
+
+          .field.is-grouped.is-grouped-right
+            .control
+              = link_to 'Annuler', company_path(@invoice.company), class: 'button is-link'
+            .control
+              = f.button :button, class: 'button is-primary' do
+                span.icon.is-small = icon 'paper-plane-o'
+                span Envoyer

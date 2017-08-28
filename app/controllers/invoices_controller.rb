@@ -44,6 +44,14 @@ class InvoicesController < ApplicationController
     @invoice.company = @company
     authorize @invoice
     if @invoice.save
+      @invoice.email_message = EmailMessage.create(
+        invoice: @invoice,
+        subject: "Facture #{@invoice.id_code}",
+        content:  "Bonjour #{@invoice.company.contact_first_name},\n" \
+                  "En pièce jointe, la facture #{@invoice.id_code}.\n" \
+                  "\nBonne journée,\n" \
+                  "#{@invoice.company.user.first_name}"
+      )
       redirect_to edit_company_invoice_path(@company, @invoice)
     else
       render :new

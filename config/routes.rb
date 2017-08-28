@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources 'invoices', only: [:show, :new, :create, :edit, :update] do
       post 'paid', to: 'invoices#mark_as_paid'
       post 'send', to: 'invoices#send_via_email'
+      resource 'email_message', only: [:edit, :update]
       resources 'tasks', only: [:create, :destroy]
     end
   end
