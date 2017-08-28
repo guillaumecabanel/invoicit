@@ -4,11 +4,11 @@
       = link_to company_invoice_path(invoice.company, invoice, format: 'pdf'),
         target: '_blank', class: 'button' do
         span.icon = icon 'file-pdf-o'
-        
+
     = link_to company_invoice_path(invoice.company, invoice, format: 'html'),
               class: 'button is-link' do
       = invoice.file_name
-    
+
     .flexitem-main
       .flexbox.flexbox-between
         span = invoice.title
@@ -36,9 +36,8 @@
         = link_to edit_company_invoice_path(invoice.company, invoice),
                   class: 'button is-info is-outlined is-borderless' do
           span Modifier
-          
-        = link_to company_invoice_send_path(invoice.company, invoice),
-                  method: :post, class: 'button is-primary is-outlined is-borderless' do
+
+        = link_to edit_company_invoice_email_message_path(invoice.company, invoice),
+                  class: 'button is-primary is-outlined is-borderless' do
           span.icon.is-small = icon 'paper-plane-o'
           span Envoyer
-    

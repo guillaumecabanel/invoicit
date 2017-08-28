@@ -1,8 +1,7 @@
-p = "Bonjour #{@invoice.company.contact_first_name},"
-p = "En pièce jointe, la facture #{@invoice.id_code}."
-p Bonne journée,
-= @invoice.company.user.first_name
-
+- @invoice.email_message.content.split("\r\n").each do |line|
+  = line
+  br
+br
 hr
 p
   small
