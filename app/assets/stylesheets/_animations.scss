@@ -1,0 +1,31 @@
+.rotate-90-bl-cw-on {
+  animation: rotate-90-bl-cw 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.swing-in-top-fwd {
+  animation: swing-in-top-fwd 0.2s ease-out both;
+}
+
+@keyframes rotate-90-bl-cw {
+  0% {
+    transform: rotate(0);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: rotate(90deg);
+    transform-origin: 0% 100%;
+  }
+}
+
+@keyframes swing-in-top-fwd {
+  0% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
