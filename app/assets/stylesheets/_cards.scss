@@ -1,7 +1,21 @@
+.box.is-hoverable{
+  cursor: pointer;
+  &:hover{
+    background-color: $white-bis;
+  }
+}
+
 .box-with-footer{
   margin-bottom: 0 !important;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.box-details{
+  background-color: $white;
+  position: relative;
+  padding: 10px;
+  box-shadow: $box-shadow;
 }
 
 .box-footer{

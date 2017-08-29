@@ -1,0 +1,48 @@
+table.table.is-fullwidth
+  thead
+    tr
+      th Description
+      th.has-text-centered
+        small Prix unitaire
+      th.has-text-centered
+        small Quantité
+      th.has-text-centered
+        small Prix H.T.
+      th.has-text-centered
+        small T.V.A.
+      th.has-text-centered
+        small Prix T.T.C
+
+  tbody
+    - invoice.tasks.each do |invoice_task|
+      tr
+        td.description = invoice_task.title
+        td.has-text-right
+          = humanized_money invoice_task.unit_price
+          | &nbsp;€
+        td.has-text-right
+          = invoice_task.quantity
+        td.has-text-right
+          = humanized_money invoice_task.price_without_vat
+          | &nbsp;€
+        td.has-text-right
+          = humanized_money invoice_task.vat
+          | &nbsp;€
+        td.has-text-right
+          = humanized_money invoice_task.price_with_vat
+          | &nbsp;€
+
+  tfoot
+    tr
+      th Total
+      th
+      th
+      th.has-text-right
+        = humanized_money invoice.amount
+        | &nbsp;€
+      th.has-text-right
+        = humanized_money invoice.amount_with_vat - invoice.amount
+        | &nbsp;€
+      th.has-text-right
+        = humanized_money invoice.amount_with_vat
+        | &nbsp;€
