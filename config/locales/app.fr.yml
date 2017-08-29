@@ -1,0 +1,5 @@
+fr:
+  invoices:
+    zero: Pas de facture
+    one: 1 facture
+    other: "%{count} factures"

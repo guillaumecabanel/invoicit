@@ -1,4 +1,6 @@
-.box.box-with-footer
+.box.box-with-footer.is-bulletable
+  - if !invoice.paid? || !invoice.sent?
+    .bullet
   .flexbox.flexbox-between
     p.control
       = link_to company_invoice_path(invoice.company, invoice, format: 'pdf'),

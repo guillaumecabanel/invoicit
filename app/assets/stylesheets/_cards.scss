@@ -5,9 +5,24 @@
 }
 
 .box-footer{
+  position: relative;
+  padding: 4px;
   margin-bottom: 1.5rem;
   background-color: $white-ter;
   border-bottom-left-radius: $box-radius;
   border-bottom-right-radius: $box-radius;
   box-shadow: $box-shadow;
+}
+
+.box.is-bulletable{
+  position: relative;
+}
+.box .bullet{
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: $warning;
+  position: absolute;
+  top: -5px;
+  right: -5px;
 }

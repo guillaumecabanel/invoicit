@@ -1,10 +1,12 @@
 = link_to company_path(company) do
-  .box.box-with-footer.is-hoverable
+  .box.box-with-footer.is-hoverable.is-bulletable
+    - if company.to_be_sent_with_vat != 0 || company.to_be_paid_with_vat != 0
+      .bullet
     .flexbox.flexbox-between
       h3.is-title.is-size-5= company.title
 
       span.is-size-5
-        span.bold = pluralize(company.invoices.count, 'facture')
+        span.bold = t('invoices', count: company.invoices.count)
 
 .box-footer
   .flexbox.flexbox-between
@@ -21,7 +23,7 @@
           .button.is-static.is-borderless
             span.icon.is-small = icon 'info-circle'
             span.text-is-info = "Paiements en attente."
-      
+
       - if company.to_be_sent_with_vat != 0
           .button.is-static.is-borderless
             span.icon.is-small = icon 'warning'
