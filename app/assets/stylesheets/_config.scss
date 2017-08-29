@@ -23,6 +23,11 @@ body{
   min-height: 100%;
 }
 
+// removing dotted line on link
+a {
+   outline: 0;
+}
+
 // Title
 $title-color: $primary;
 $title-weight: $weight-semibold;
