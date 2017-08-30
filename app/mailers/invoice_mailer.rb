@@ -1,7 +1,7 @@
 class InvoiceMailer < ApplicationMailer
   def invoice_to_pay(invoice)
     @invoice = invoice
-    @bank_account_statement = BankAccountStatement.first
+    @bank_account_statement = @invoice.company.user.bank_account_statement
     @receiver_mail = @invoice.company.contact_email
 
     attachments["#{@invoice.file_name}.pdf"] = WickedPdf.new.pdf_from_string(
@@ -19,7 +19,7 @@ class InvoiceMailer < ApplicationMailer
         )
       }
     )
-    
+
     mail(
       from:       "\"#{@invoice.company.user.first_name} #{@invoice.company.user.last_name}\" <#{ENV['APP_SENDER_EMAIL']}>",
       'reply-to': @invoice.company.user.email,

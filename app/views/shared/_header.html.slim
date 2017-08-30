@@ -12,8 +12,13 @@ nav.navbar
           = link_to 'Profil', edit_profile_path, class: 'button is-link'
 
         - if current_user.first_name.present?
-          .navbar-item
-            = link_to 'Informations bancaires', edit_bank_account_statement_path, class: 'button is-link'
+          - if current_user.bank_account_statement.nil?
+            .navbar-item
+              = link_to 'Informations bancaires', new_bank_account_statement_path, class: 'button is-link'
+          - else
+            .navbar-item
+              = link_to 'Informations bancaires', edit_bank_account_statement_path, class: 'button is-link'
+
         .navbar-item
           = link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'button is-link'
       - else
