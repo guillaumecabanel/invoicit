@@ -1,10 +1,13 @@
 # InvoicIt
 
-Manage and send invoices to your client easily.
+Manage and send invoices to your clients easily.
 
 ## Contribute
 
-Find a bug or want to improve this app? Please do!
+> - I found a bug or want to improve this app, what can I do?
+> - I'm glad you ask:
+
+You can follow the backlog on [Trello](https://trello.com/b/LLfi1BG4/invoicit).
 
 1.  [Fork](https://github.com/guillaumecabanel/invoicit#fork-destination-box)
 
