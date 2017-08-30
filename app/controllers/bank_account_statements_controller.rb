@@ -1,5 +1,6 @@
 class BankAccountStatementsController < ApplicationController
   before_action :bank_account_statement_params, only: [:create, :update]
+  before_action :set_bank_account_statement, only: [:edit, :update]
 
   def new
     @bank_account_statement = BankAccountStatement.new
@@ -19,12 +20,11 @@ class BankAccountStatementsController < ApplicationController
   end
 
   def edit
-    @bank_account_statement = current_user.bank_account_statement
     authorize @bank_account_statement
   end
 
   def update
-    @bank_account_statement = current_user.bank_account_statement
+    authorize @bank_account_statement
     if @bank_account_statement.update(bank_account_statement_params)
       redirect_to root_path
     else
@@ -33,6 +33,10 @@ class BankAccountStatementsController < ApplicationController
   end
 
   private
+
+  def set_bank_account_statement
+    @bank_account_statement = current_user.bank_account_statement
+  end
 
   def bank_account_statement_params
     params.require(:bank_account_statement).permit(
