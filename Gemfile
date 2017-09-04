@@ -22,6 +22,9 @@ gem 'autoprefixer-rails'
 gem 'slim'
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'
 
+gem "sprockets"
+gem "sprockets-es6"
+
 gem 'money-rails'
 
 gem 'wicked_pdf'
