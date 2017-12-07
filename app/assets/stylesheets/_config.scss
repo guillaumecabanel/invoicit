@@ -23,6 +23,12 @@ body{
   min-height: 100%;
 }
 
+#hint-color{
+  width: 100vw;
+  height: 4px;
+  background-color: $primary;
+}
+
 // removing dotted line on link
 a {
    outline: 0;
