@@ -12,6 +12,7 @@ gem 'pundit'
 gem 'rails-i18n', '5.0.3'
 gem 'devise-i18n', '~> 1.2'
 gem 'postmark-rails'
+gem 'rollbar'
 
 gem 'sass-rails'
 gem 'jquery-rails'
