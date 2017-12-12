@@ -2,11 +2,9 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: [:edit, :update]
 
   def edit
-    authorize @user
   end
 
   def update
-    authorize @user
     if @user.update(user_params)
       if @user.bank_account_statement.nil?
        redirect_to new_bank_account_statement_path
@@ -37,5 +35,6 @@ class ProfilesController < ApplicationController
 
   def set_user
     @user = current_user
+    authorize @user
   end
 end

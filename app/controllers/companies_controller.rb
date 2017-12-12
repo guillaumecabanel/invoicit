@@ -7,7 +7,6 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    authorize @company
     @invoices_sent = @company.invoices.where.not(sent_at: nil).order(sent_at: :desc)
     @invoices_to_send = @company.invoices.where(sent_at: nil).order(:created_at)
   end
@@ -29,11 +28,9 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    authorize @company
   end
 
   def update
-    authorize @company
     if @company.update(company_params)
       redirect_to company_path @company
     else
@@ -51,6 +48,7 @@ class CompaniesController < ApplicationController
 
   def set_company
     @company = Company.find(params[:id])
+    authorize @company
   end
 
   def company_params

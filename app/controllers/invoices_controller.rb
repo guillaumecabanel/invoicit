@@ -12,7 +12,6 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    authorize @invoice
     @bank_account_statement = current_user.bank_account_statement
     respond_to do |format|
       format.html
@@ -59,14 +58,11 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    authorize @company
-    authorize @invoice
     @task = Task.new(invoice: @invoice)
     authorize @task
   end
 
   def update
-    authorize @invoice
     @invoice.update invoice_params
     if @invoice.valid?
       redirect_to company_path(@invoice.company)
@@ -105,10 +101,12 @@ class InvoicesController < ApplicationController
 
   def set_company
     @company = Company.find(params[:company_id])
+    authorize @company
   end
 
   def set_invoice
     @invoice = Invoice.find(params[:id])
+    authorize @invoice
   end
 
   def invoice_params

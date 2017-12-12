@@ -2,11 +2,9 @@ class EmailMessagesController < ApplicationController
   before_action :set_invoice, only: [:edit, :update]
 
   def edit
-    authorize @invoice
   end
 
   def update
-    authorize @invoice
     if @invoice.email_message.update(email_message_params)
       if @invoice.update(sent_at: Time.now)
         InvoiceMailer.invoice_to_pay(@invoice).deliver_later
@@ -23,6 +21,7 @@ class EmailMessagesController < ApplicationController
 
   def set_invoice
     @invoice = Invoice.find(params[:invoice_id])
+    authorize @invoice
   end
 
   def email_message_params

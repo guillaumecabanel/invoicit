@@ -20,11 +20,10 @@ class BankAccountStatementsController < ApplicationController
   end
 
   def edit
-    authorize @bank_account_statement
+
   end
 
   def update
-    authorize @bank_account_statement
     if @bank_account_statement.update(bank_account_statement_params)
       redirect_to root_path
     else
@@ -36,6 +35,7 @@ class BankAccountStatementsController < ApplicationController
 
   def set_bank_account_statement
     @bank_account_statement = current_user.bank_account_statement
+    authorize @bank_account_statement
   end
 
   def bank_account_statement_params
