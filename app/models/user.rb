@@ -5,9 +5,9 @@ class User < ApplicationRecord
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :companies
+  has_many :companies, dependent: :destroy
   has_many :invoices, through: :companies
-  has_one :bank_account_statement
+  has_one :bank_account_statement, dependent: :destroy
 
   validates :first_name,
             :last_name,

@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   belongs_to :user
-  has_many :invoices
+  has_many :invoices, dependent: :destroy
 
   monetize  :total_paid_with_vat_cents,
             :total_paid_without_vat_cents,
