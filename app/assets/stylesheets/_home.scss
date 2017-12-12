@@ -1,6 +1,16 @@
 .main-background-image{
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.8) 100%,rgba(255,255,255,0) 50%, rgba(255,255,255,0.9) 0%), image-url('365cons_071.svg');
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), image-url('paper_pen.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+}
+
+.has-light-text{
+  color: $light;
+}
+a.has-light-text{
+  &:hover{
+    color: $light;
+    text-decoration: underline;
+  }
 }

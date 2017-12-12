@@ -3,16 +3,13 @@ section.hero
     .hero-body
       .container
         h1.title.is-1 = ENV['APP_NAME']
-        h1.subtitle.is-1 Gérer et envoyer facilement vos factures à vos clients.
+        h1.subtitle.is-1.has-light-text Gérer et envoyer facilement vos factures à vos clients.
 
         br
+        br
         .columns
-          .column.is-6-desktop.is-offset-3-desktop
-            .box
-              .columns
-                .column
-                  .field
-                    = link_to 'Se connecter', new_user_session_path, class: 'button is-link is-fullwidth'
-                .column
-                  .field
-                    = link_to 'S\'inscrire', new_user_registration_path, class: 'button is-primary is-fullwidth is-large'
+          .column.is-4-desktop.is-offset-4-desktop.has-text-centered
+            = link_to 'S\'inscrire', new_user_registration_path, class: 'button is-primary is-fullwidth is-large'
+        .columns
+          .column.is-2-desktop.is-offset-5-desktop.has-text-centered
+            = link_to 'Se connecter', new_user_session_path, class: 'has-light-text'
