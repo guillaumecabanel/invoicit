@@ -20,7 +20,6 @@ class BankAccountStatementsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update

@@ -1,9 +1,10 @@
 def simulate_sent_and_paid_for(invoice)
   if rand(4) == 0
-    date = Faker::Date.backward(100)
-    invoice.update(sent_at: date)
+    fake_sent_date = Faker::Date.between(invoice.created_at, Date.today)
+    invoice.update(sent_at: fake_sent_date, updated_at: fake_sent_date)
     if rand(2) == 0
-      invoice.update(paid_at: Faker::Date.between(date, Date.today))
+      fake_paid_date = Faker::Date.between(fake_sent_date, Date.today)
+      invoice.update(paid_at: fake_paid_date, updated_at: fake_paid_date)
     end
   end
 end
@@ -57,10 +58,12 @@ puts '.OK'
 
 print 'Create invoices...'
 20.times do
-  invoice = Invoice.create!(
+  invoice = Invoice.new(
     company: Company.order("RANDOM()").first,
-    title:   Faker::Company.catch_phrase
+    title:   Faker::Company.catch_phrase,
+    created_at: fake_sent_date = Faker::Date.backward(800)
   )
+  invoice.save!
   rand(1..6).times do
     invoice.tasks.create!(
       title:            Faker::Company.catch_phrase,

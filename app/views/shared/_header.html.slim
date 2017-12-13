@@ -4,6 +4,7 @@ nav.navbar
   .navbar-menu
     .navbar-start
       - if current_user && current_user.first_name.present?
+        = link_to 'Dashboard', dashboard_path, class: 'navbar-item'
         = link_to 'Clients', companies_path, class: 'navbar-item'
         = link_to 'Factures', invoices_path, class: 'navbar-item'
     .navbar-end

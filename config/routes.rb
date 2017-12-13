@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resource 'profile', only: [:edit, :update]
+  resource 'dashboard', only: [:show]
   resource 'bank_account_statement', only: [:new, :create, :edit, :update]
 
   resources 'invoices', only: [:index]

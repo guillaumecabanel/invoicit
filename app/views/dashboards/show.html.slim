@@ -1,0 +1,44 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Dashboard
+
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      - @sent_invoices_by_year.each do |year, invoices|
+        h3.is-title.is-size-4.has-text-centered = year
+        table.table.is-fullwidth
+          tbody
+            tr
+              th Factures envoyées
+              td.has-text-right
+                = invoices.count
+            tr
+              th Total H.T.
+              td.has-text-right
+                = humanized_money invoices.sum(&:amount)
+                | &nbsp;€ H.T.
+            tr
+              th Total T.V.A.
+              td.has-text-right
+                = humanized_money(invoices.sum(&:amount_with_vat) - invoices.sum(&:amount))
+                | &nbsp;€
+
+        table.table.is-fullwidth
+          tbody
+            - invoices.group_by{ |invoice| invoice.updated_at.month }.sort.to_h.each do |month, monthly_invoices|
+              tr
+                th = Date::MONTHNAMES[month]
+                td.has-text-right
+                  = humanized_money monthly_invoices.sum(&:amount)
+                  | &nbsp;€ H.T.
+
+        table.table.is-fullwidth
+          tbody
+            - invoices.group_by{ |invoice| invoice.company }.each do |company, company_invoices|
+              tr
+                th = company.title
+                td.has-text-right
+                  = "#{company_invoices.count.fdiv(invoices.count) * 100}%"
