@@ -41,4 +41,4 @@
               tr
                 th = company.title
                 td.has-text-right
-                  = "#{company_invoices.count.fdiv(invoices.count) * 100}%"
+                  = "#{(company_invoices.sum(&:amount) / invoices.sum(&:amount) * 100).round(1)}%"
