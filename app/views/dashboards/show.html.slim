@@ -6,39 +6,94 @@
 
 .container
   .columns
-    .column.is-half-desktop.is-offset-3-desktop
-      - @sent_invoices_by_year.each do |year, invoices|
+    .column.is-8-desktop.is-offset-2-desktop
+      - @sent_invoices.group_by{ |invoice| invoice.updated_at.year }.each do |year, invoices|
         h3.is-title.is-size-4.has-text-centered = year
-        table.table.is-fullwidth
-          tbody
-            tr
-              th Factures envoyées
-              td.has-text-right
-                = invoices.count
-            tr
-              th Total H.T.
-              td.has-text-right
-                = humanized_money invoices.sum(&:amount)
-                | &nbsp;€ H.T.
-            tr
-              th Total T.V.A.
-              td.has-text-right
-                = humanized_money(invoices.sum(&:amount_with_vat) - invoices.sum(&:amount))
-                | &nbsp;€
-
-        table.table.is-fullwidth
-          tbody
-            - invoices.group_by{ |invoice| invoice.updated_at.month }.sort.to_h.each do |month, monthly_invoices|
+        .box
+          table.table.is-fullwidth
+            tbody
               tr
-                th = Date::MONTHNAMES[month]
+                th Factures envoyées
                 td.has-text-right
-                  = humanized_money monthly_invoices.sum(&:amount)
+                  = invoices.count
+              tr
+                th Total H.T.
+                td.has-text-right
+                  = humanized_money invoices.sum(&:amount)
                   | &nbsp;€ H.T.
-
-        table.table.is-fullwidth
-          tbody
-            - invoices.group_by{ |invoice| invoice.company }.each do |company, company_invoices|
               tr
-                th = company.title
+                th Total T.V.A.
                 td.has-text-right
-                  = "#{(company_invoices.sum(&:amount) / invoices.sum(&:amount) * 100).round(1)}%"
+                  = humanized_money(invoices.sum(&:amount_with_vat) - invoices.sum(&:amount))
+                  | &nbsp;€
+
+        .box id="monthly-turnover-#{year}"
+        .box id="yearly-cutomers-percentage-#{year}"
+        hr
+
+- dashboard = DashboardPresenter.new(invoices: @sent_invoices)
+
+- content_for(:js) do
+  = javascript_include_tag "https://unpkg.com/frappe-charts@0.0.8/dist/frappe-charts.min.iife.js"
+
+  javascript:
+
+    const frappeChart = (
+      target,
+      title,
+      type,
+      year,
+      labels,
+      datasets,
+      xFormat,
+      yFormat
+    ) => {
+      const data = {
+        labels: labels,
+        datasets: datasets
+      }
+
+      const chart = new Chart({
+        parent: target,
+        title: title,
+        data: data,
+        type: type,
+        height: 250,
+
+        colors: ['#7cd6fd'],
+
+        format_tooltip_x: d => d + xFormat,
+        format_tooltip_y: d => d + yFormat
+      })
+    }
+
+  - dashboard.years.each do |year|
+    javascript:
+      frappeChart(
+        "#monthly-turnover-#{year}",
+        "<h1>C.A. mensuel #{year}</h1>",
+        "bar",
+        "#{year}",
+        JSON.parse("#{j dashboard.monthes}"),
+        [
+          {
+            title: "C.A. mensuel #{year}",
+            values: JSON.parse("#{dashboard.values_for_monthly_turnover(year)}")
+          }
+        ],
+        "",
+        " k€"
+      )
+
+      frappeChart(
+        "#yearly-cutomers-percentage-#{year}",
+        "<h1>Répartion des clients en #{year}</h1>",
+        "percentage",
+        "#{year}",
+        JSON.parse("#{j dashboard.yearly_customers_list(year)}"),
+        [{
+          values: JSON.parse("#{dashboard.values_yearly_customers_turnover(year)}")
+        }],
+        "",
+        ""
+      )

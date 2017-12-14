@@ -1,5 +1,5 @@
 def simulate_sent_and_paid_for(invoice)
-  if rand(4) == 0
+  if rand(3) == 0
     fake_sent_date = Faker::Date.between(invoice.created_at, Date.today)
     invoice.update(sent_at: fake_sent_date, updated_at: fake_sent_date)
     if rand(2) == 0

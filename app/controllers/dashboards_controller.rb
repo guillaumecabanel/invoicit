@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   def show
     set_user
     user_invoices = policy_scope(Invoice)
-    @sent_invoices_by_year = user_invoices.where.not(sent_at: nil).group_by{ |invoice| invoice.updated_at.year }
+    @sent_invoices = user_invoices.where.not(sent_at: nil)
   end
 
   private
