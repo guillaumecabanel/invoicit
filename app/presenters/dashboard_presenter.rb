@@ -40,7 +40,7 @@ class DashboardPresenter
 
   def yearly_customers_turnover(year)
     yearly_invoices_by_customer(year).transform_values do |customer_invoices|
-      customer_invoices.sum(&:amount).to_f.fdiv(1000)
+      customer_invoices.sum(&:amount).to_f.fdiv(1000).round(2)
     end
   end
 
@@ -57,7 +57,7 @@ class DashboardPresenter
       if invoices_of_the_month.nil?
         0
       else
-        invoices_of_the_month.sum(&:amount).to_f.fdiv(1000)
+        invoices_of_the_month.sum(&:amount).to_f.fdiv(1000).round(2)
       end
     end
   end
