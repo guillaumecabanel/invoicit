@@ -101,7 +101,6 @@ class InvoicesController < ApplicationController
 
   def set_company
     @company = Company.find(params[:company_id])
-    authorize @company
   end
 
   def set_invoice
