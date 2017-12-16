@@ -1,0 +1,21 @@
+#hint-color{
+  width: 100vw;
+  height: 4px;
+  background-color: #667797;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.hero.is-warning{
+  background-color: #fed576;
+}
+
+.hero.is-danger{
+  background-color: #f04d53;
+}
+
+.has-text-underline{
+  text-decoration: underline;
+}
