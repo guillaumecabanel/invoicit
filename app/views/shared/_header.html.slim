@@ -4,9 +4,9 @@ nav.navbar
   .navbar-menu
     .navbar-start
       - if current_user && current_user.first_name.present?
-        = link_to 'Dashboard', dashboard_path, class: 'navbar-item'
-        = link_to 'Clients', companies_path, class: 'navbar-item'
-        = link_to 'Factures', invoices_path, class: 'navbar-item'
+        = link_to 'Dashboard', dashboard_path, class: "navbar-item #{'is-active-link' if current_page? dashboard_path}"
+        = link_to 'Clients', companies_path, class: "navbar-item #{'is-active-link' if current_page? companies_path}"
+        = link_to 'Factures', invoices_path, class: "navbar-item #{'is-active-link' if current_page? invoices_path}"
     .navbar-end
       - if current_user
         .navbar-item
