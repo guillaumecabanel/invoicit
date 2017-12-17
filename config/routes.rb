@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post 'send', to: 'invoices#send_via_email'
       resource 'email_message', only: [:edit, :update]
       resources 'tasks', only: [:create, :destroy]
+      resource 'estimate', only: :show
     end
   end
 

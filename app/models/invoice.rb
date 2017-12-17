@@ -26,6 +26,12 @@ class Invoice < ApplicationRecord
     "#{date.strftime('%Y%m%d')}-#{company.id}-#{index}"
   end
 
+  def id_code_for_estimate
+    date = Time.now
+    index = company.invoices.order(:created_at).index(self)
+    "#{date.strftime('%Y%m%d')}-#{company.id}-#{index}"
+  end
+
   def file_name
     "facture-#{company.title_to_snake_case}-#{id_code}"
   end

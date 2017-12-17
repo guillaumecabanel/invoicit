@@ -18,8 +18,6 @@
             span.is-size-5
               span.bold> = "#{humanized_money invoice.amount_with_vat} €"
               span.is-size-7 T.T.C.
-          / .column.is-1.has-text-right
-          /   span.caret-right = icon 'caret-right', class: 'has-text-grey-light'
 
 
   .box-details.hidden
@@ -27,10 +25,13 @@
 
   .box-footer
     .flexbox.flexbox-between
-      .button.is-static.is-borderless.has-text-grey-dark
-        = "#{humanized_money invoice.amount} €"
+      div
+        .button.is-static.is-borderless.has-text-grey-dark
+          = "#{humanized_money invoice.amount} €"
+          | &nbsp;
+          span.is-size-7 H.T.
         | &nbsp;
-        span.is-size-7 H.T.
+        = link_to "Générer un devis", company_invoice_estimate_path(invoice.company, invoice, format: 'pdf'), target: '_blank', class: 'button is-dark is-outlined is-borderless'
       div
         - if invoice.paid?
             .button.is-static.is-borderless
