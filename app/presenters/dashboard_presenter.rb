@@ -5,7 +5,7 @@ class DashboardPresenter
 
   def initialize(params = {})
     @invoices = params[:invoices]
-    @years = invoices_by_year.keys
+    @years = invoices_by_year.keys.sort.reverse
   end
 
   def values_for_monthly_turnover(year)
@@ -25,6 +25,10 @@ class DashboardPresenter
       'jan','fév','mars','avr','mai','juin',
       'juil','août','sept','oct','nov','déc'
     ].to_json.html_safe
+  end
+
+  def invoices_for(year)
+    invoices_by_year[year]
   end
 
   private

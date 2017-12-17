@@ -1,3 +1,5 @@
+- dashboard = DashboardPresenter.new(invoices: @sent_invoices)
+
 .box
   .container
     .columns
@@ -7,7 +9,7 @@
 .container
   .columns
     .column.is-8-desktop.is-offset-2-desktop
-      - @sent_invoices.group_by{ |invoice| invoice.updated_at.year }.each do |year, invoices|
+      - dashboard.years.each do |year|
         h3.is-title.is-size-4.has-text-centered = year
         .box
           table.table.is-fullwidth
@@ -15,23 +17,22 @@
               tr
                 th Factures envoyées
                 td.has-text-right
-                  = invoices.count
+                  = dashboard.invoices_for(year).count
               tr
                 th Total H.T.
                 td.has-text-right
-                  = humanized_money invoices.sum(&:amount)
+                  = humanized_money dashboard.invoices_for(year).sum(&:amount)
                   | &nbsp;€ H.T.
               tr
                 th Total T.V.A.
                 td.has-text-right
-                  = humanized_money(invoices.sum(&:amount_with_vat) - invoices.sum(&:amount))
+                  = humanized_money(dashboard.invoices_for(year).sum(&:amount_with_vat) - dashboard.invoices_for(year).sum(&:amount))
                   | &nbsp;€
 
         .box id="monthly-turnover-#{year}"
         .box id="yearly-cutomers-percentage-#{year}"
         hr
 
-- dashboard = DashboardPresenter.new(invoices: @sent_invoices)
 
 - content_for(:js) do
   = javascript_include_tag "https://unpkg.com/frappe-charts@0.0.8/dist/frappe-charts.min.iife.js"
