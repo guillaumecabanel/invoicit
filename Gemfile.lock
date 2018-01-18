@@ -134,7 +134,7 @@ GEM
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    pg (1.0.0)
+    pg (0.21.0)
     postmark (1.10.0)
       json
       rake
@@ -258,7 +258,7 @@ DEPENDENCIES
   letsencrypt_http_challenge!
   listen (~> 3.0.5)
   money-rails
-  pg
+  pg (~> 0.21)
   postmark-rails
   pry-byebug
   pry-rails
