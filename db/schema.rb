@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828084629) do
+ActiveRecord::Schema.define(version: 20180125123716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,25 @@ ActiveRecord::Schema.define(version: 20170828084629) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["invoice_id"], name: "index_email_messages_on_invoice_id"
+  end
+
+  create_table "expense_reports", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_expense_reports_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string "description"
+    t.integer "number"
+    t.datetime "date"
+    t.float "tva_ratio"
+    t.bigint "expense_report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_without_vat_cents", default: 0, null: false
+    t.index ["expense_report_id"], name: "index_expenses_on_expense_report_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -101,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170828084629) do
     t.string "company_city"
     t.string "company_siret"
     t.string "company_rcs"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -108,6 +128,8 @@ ActiveRecord::Schema.define(version: 20170828084629) do
   add_foreign_key "bank_account_statements", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "email_messages", "invoices"
+  add_foreign_key "expense_reports", "users"
+  add_foreign_key "expenses", "expense_reports"
   add_foreign_key "invoices", "companies"
   add_foreign_key "tasks", "invoices"
 end

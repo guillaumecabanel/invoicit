@@ -1,10 +1,15 @@
 footer.footer
   .content
-    p.has-text-right
-      | Code source sous license
-      =< link_to 'MIT', 'https://github.com/guillaumecabanel/invoicit/blob/master/LICENSE'
-      | .
-      =<> ENV['APP_NAME']
-      | est un projet open source : améliorez-le sur
-      =< link_to 'GitHub', 'https://github.com/guillaumecabanel/invoicit'
-      | .
+    .columns
+      .column
+        - if current_user && current_user.admin?
+          p = link_to 'admin', rails_admin_path, class: 'has-text-weight-bold'
+      .column
+        p.has-text-right
+          | Code source sous license
+          =< link_to 'MIT', 'https://github.com/guillaumecabanel/invoicit/blob/master/LICENSE'
+          | .
+          =<> ENV['APP_NAME']
+          | est un projet open source : améliorez-le sur
+          =< link_to 'GitHub', 'https://github.com/guillaumecabanel/invoicit'
+          | .
