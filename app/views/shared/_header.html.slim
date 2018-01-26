@@ -10,7 +10,7 @@ nav.navbar
     .navbar-end
       - if current_user
         .navbar-item
-          = link_to 'Profil', edit_profile_path, class: 'button is-link'
+          = link_to 'Profil', edit_profile_path, class: 'button is-link is-outlined'
 
         - if current_user.first_name.present?
           - if current_user.bank_account_statement.nil?
@@ -18,12 +18,12 @@ nav.navbar
               = link_to 'Informations bancaires', new_bank_account_statement_path, class: 'button is-link'
           - else
             .navbar-item
-              = link_to 'Informations bancaires', edit_bank_account_statement_path, class: 'button is-link'
+              = link_to 'Informations bancaires', edit_bank_account_statement_path, class: 'button is-link is-outlined'
 
         .navbar-item
-          = link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'button is-link'
+          = link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'button is-link is-outlined'
       - else
         .navbar-item
-          = link_to 'Se connecter', new_user_session_path, class: 'button is-link'
+          = link_to 'Se connecter', new_user_session_path, class: 'button is-link is-outlined'
         .navbar-item
           = link_to 'S\'inscrire', new_user_registration_path, class: 'button is-primary'

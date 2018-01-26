@@ -16,7 +16,7 @@
               = f.input :email, required: true, autofocus: true,
                                 placeholder: 'Email', label: false
               span.icon.is-small.is-left = icon 'envelope'
-              
+
           .field
             = f.label :password, label: 'Mot de passe', required: true
             .control.is-expanded.has-icons-left
@@ -35,7 +35,7 @@
           hr
           .field.is-grouped.is-grouped-right
             .control
-              = link_to "Déjà un compte ?", new_user_session_path, class: 'button is-link'
+              = link_to "Déjà un compte ?", new_user_session_path, class: 'button is-link is-outlined'
 
             .control
               = f.submit 'Inscription', class: 'button is-primary'
