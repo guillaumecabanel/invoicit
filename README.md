@@ -2,6 +2,7 @@
 
 Manage and send invoices to your clients easily.
 
+
 ## Contribute
 
 > - I found a bug or want to improve this app, what can I do?
