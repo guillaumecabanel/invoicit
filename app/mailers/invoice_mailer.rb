@@ -24,10 +24,8 @@ class InvoiceMailer < ApplicationMailer
       from:       "\"#{@invoice.company.user.first_name} #{@invoice.company.user.last_name}\" <#{ENV['APP_SENDER_EMAIL']}>",
       'reply-to': @invoice.company.user.email,
       cc:         @invoice.company.user.email,
-      bcc:        "\"#{ENV['APP_NAME']} service\" <#{ENV['APP_EMAIL']}>",
       to:         @receiver_mail,
       subject:    @invoice.email_message.subject
     )
-
   end
 end
