@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update]
 
   def index
-    @companies = policy_scope(Company).joins(:invoices).order('invoices.updated_at DESC')
+    @companies = policy_scope(Company)
   end
 
   def show
