@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/guillaumecabanel/letsencrypt_http_challenge.git
-  revision: 6b651e3f5f7829f26b89e31b645c93a927fcbb14
+  revision: e11a125a072502092cf11c8fb88e8f3621dfe4ea
   specs:
     letsencrypt_http_challenge (0.0.3)
       acme-client (~> 0.3.0)
@@ -50,6 +50,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    aes_key_wrap (1.0.1)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -62,7 +63,7 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    bindata (2.4.1)
+    bindata (2.4.3)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
@@ -90,7 +91,7 @@ GEM
     execjs (2.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
-    faraday (0.13.1)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     figaro (1.1.1)
@@ -116,11 +117,10 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (2.1.0)
-    json-jwt (1.8.3)
+    json-jwt (1.9.4)
       activesupport
+      aes_key_wrap
       bindata
-      securecompare
-      url_safe_base64
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -245,7 +245,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    securecompare (1.0.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -276,7 +275,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.3)
       execjs (>= 0.3.0, < 3)
-    url_safe_base64 (0.2.2)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
