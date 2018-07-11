@@ -3,7 +3,7 @@
     .columns
       .column.is-one-quarter
         h2.title.is-size-2 Profil
-  
+
 .container
   .columns
     .column.is-half-desktop.is-offset-3-desktop
@@ -23,7 +23,7 @@
                     = f.input :last_name, label: false,
                                          placeholder: 'Nom'
                     span.icon.is-small.is-left = icon 'user'
-          
+
           .field.is-horizontal
             .field-label
             .field-body
@@ -38,7 +38,7 @@
                 .control.is-expanded.has-icons-left
                   = f.input :phone_number, label: false, placeholder: 'N° de téléphone'
                   span.icon.is-small.is-left = icon 'phone'
-                
+
           br
           .field.is-horizontal
             .field-label.is-normal
@@ -55,6 +55,7 @@
               .field
                 .control.is-expanded
                   = f.input :company_street, label: false, placeholder: 'Rue'
+                .help Rue
 
           .field.is-horizontal
             .field-label
@@ -62,10 +63,12 @@
               .field
                 .control.is-expanded
                   = f.input :company_postal_code, label: false, placeholder: 'Code postal'
+                .help Code postal
               .field
                 .control.is-expanded
                   = f.input :company_city, label: false, placeholder: 'Ville'
-                  
+                .help Ville
+
           .field.is-horizontal
             .field-label
             .field-body
@@ -79,8 +82,8 @@
                   label.label &nbsp;
                   = f.input :company_siret, label: false, placeholder: 'SIRET'
                 .help SIRET
-        
-        
+
+
           hr
           .field.is-grouped.is-grouped-right
             - if current_user.first_name.present?
