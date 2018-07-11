@@ -1,18 +1,7 @@
-GIT
-  remote: https://github.com/guillaumecabanel/letsencrypt_http_challenge.git
-  revision: e11a125a072502092cf11c8fb88e8f3621dfe4ea
-  specs:
-    letsencrypt_http_challenge (0.0.3)
-      acme-client (~> 0.3.0)
-      figaro
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    acme-client (0.3.7)
-      faraday (~> 0.9, >= 0.9.1)
-      json-jwt (~> 1.2, >= 1.2.3)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -50,7 +39,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    aes_key_wrap (1.0.1)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -63,7 +51,6 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    bindata (2.4.3)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
@@ -91,8 +78,6 @@ GEM
     execjs (2.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
-    faraday (0.15.2)
-      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -117,10 +102,6 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (2.1.0)
-    json-jwt (1.9.4)
-      activesupport
-      aes_key_wrap
-      bindata
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -155,7 +136,6 @@ GEM
       money (~> 6.10.0)
       railties (>= 3.0)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
     nested_form (0.3.2)
     nio4r (2.2.0)
     nokogiri (1.8.1)
@@ -297,7 +277,6 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
-  letsencrypt_http_challenge!
   listen (~> 3.0.5)
   money-rails
   pg (~> 0.21)
@@ -326,4 +305,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

@@ -31,8 +31,6 @@ gem 'money-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem 'letsencrypt_http_challenge', git: 'https://github.com/guillaumecabanel/letsencrypt_http_challenge.git'
-
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
