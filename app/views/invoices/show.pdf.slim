@@ -24,6 +24,8 @@
       p = "#{@invoice.company.address_postal_code} #{@invoice.company.address_city.upcase}"
 
   br
+  br
+  br
   h2.is-4 Prestations
   #prestations
   = render 'tasks/index.html.slim', invoice: @invoice, task: nil
@@ -35,6 +37,8 @@
     p Escompte pour paiement anticipé&nbsp;: néant.
 
     br
+    br
+    br
     .flexbox.flexbox-between.flexbox-align-top.pdf-flexbox
       .flexitem
         #synthesis
@@ -45,6 +49,8 @@
           h3.is-5 Conditions
           = render 'invoices/payment_conditions.html.slim'
 
+  br
+  br
   br
   .nobreak
     h3.is-5 Relevé d'identité bancaire
