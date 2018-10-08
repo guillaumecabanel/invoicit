@@ -1,3 +1,16 @@
+.pdf-flexbox{
+  display: block;
+
+  .flexitem{
+    display: inline-block;
+    box-sizing: border-box;
+    &:last-child{
+      position: absolute;
+      right: 0.5cm;
+    }
+  }
+}
+
 .flexbox{
   display: flex;
 

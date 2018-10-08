@@ -2,22 +2,22 @@
   br
   br
   br
-  .flexbox.flexbox-between.flexbox-align-top
-    .flexitem-size-40
+  .flexbox.flexbox-between.flexbox-align-top.pdf-flexbox
+    .flexitem-size-40.flexitem
       h2.has-text-primary = @invoice.company.user.company_name
       p.is-small = @invoice.company.user.phone_number
       p.is-small = @invoice.company.user.email
-    .flexitem-fixed-size-40.has-text-right
+    .flexitem-fixed-size-40.has-text-right.flexitem
       h4 = @invoice.date
       h4
         | Facture
         =< @invoice.id_code
   br
-  .flexbox.flexbox-between.flexbox-align-top
-    .flexitem-size-40
+  .flexbox.flexbox-between.flexbox-align-top.pdf-flexbox
+    .flexitem-size-40.flexitem
       h3.is-4 Objet
       p.bold = @invoice.title
-    .flexitem-fixed-size-40
+    .flexitem-fixed-size-40.flexitem
       h3.is-4 Client
       p.bold = @invoice.company.title
       p = @invoice.company.address_street
@@ -35,14 +35,15 @@
     p Escompte pour paiement anticipé&nbsp;: néant.
 
     br
-    .flexbox.flexbox-between.flexbox-align-top
-      #synthesis
-        h3.is-5 Synthèse
-        = render 'invoices/payment_synthesis.html.slim', invoice: @invoice
-
-      #conditions
-        h3.is-5 Conditions
-        = render 'invoices/payment_conditions.html.slim'
+    .flexbox.flexbox-between.flexbox-align-top.pdf-flexbox
+      .flexitem
+        #synthesis
+          h3.is-5 Synthèse
+          = render 'invoices/payment_synthesis.html.slim', invoice: @invoice
+      .flexitem
+        #conditions
+          h3.is-5 Conditions
+          = render 'invoices/payment_conditions.html.slim'
 
   br
   .nobreak

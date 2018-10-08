@@ -47,11 +47,12 @@
 }
 
 #conditions{
-  padding-left: 1cm;
-  flex: 1 0 auto;
+  position: absolute;
+  right: 0.5cm;
+  width: 400px;
 }
 #synthesis{
-  min-width: 33%;
+
 }
 
 // Page Breaks
