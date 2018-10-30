@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :partners, only: [:index, :show, :new, :create, :edit, :update]
+  resources :partners, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :subcontracts, only: [:new, :create]
+  end
 
   resource 'profile',   only: [:edit, :update]
   resource 'dashboard', only: [:show]

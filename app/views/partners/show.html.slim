@@ -4,7 +4,7 @@
   .columns
     .column.is-one-quarter
       .field
-        = link_to 'Nouvelle sous-traitance (TODO)', '#',
+        = link_to 'Nouvelle sous-traitance', new_partner_subcontract_path(@partner),
                   class: 'button is-fullwidth is-primary is-outlined'
     .column
-      | TODO
+      = render 'subcontracts/index', partner: @partner

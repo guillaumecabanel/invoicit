@@ -2,3 +2,7 @@
   .box.box-with-footer.is-hoverable.is-bulletable
     .flexbox.flexbox-between
       h3.is-title.is-size-5= partner.full_name
+
+      span.is-size-5
+        span.bold = humanized_money partner.total_subcontract_amount
+        | &nbsp;€

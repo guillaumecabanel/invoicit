@@ -1,0 +1,26 @@
+table.table.is-striped.is-fullwidth
+  thead
+    tr
+      th
+        small Facture
+      th
+        small Client
+      th.has-text-centered
+        small Montant H.T.
+
+  tbody
+    - partner.subcontracts.each do |subcontract|
+      tr
+        td = subcontract.invoice.title
+        td = subcontract.invoice.company.title
+        td.has-text-right
+          = humanized_money subcontract.amount
+          | &nbsp;€
+
+  tfoot
+    tr
+      th
+      th
+      th.has-text-right
+        = humanized_money partner.total_subcontract_amount
+        | &nbsp;€
