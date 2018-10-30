@@ -13,8 +13,17 @@ class DashboardPresenter
     monthly_turnover(year).values
   end
 
+  def values_for_monthly_earnings(year)
+    monthly_pairs = monthly_turnover(year).values.zip(monthly_subcontract_transferts(year).values)
+    monthly_pairs.map do |turnover, subcontract_transfert|
+      turnover - subcontract_transfert
+    end
+  end
+
   def yearly_customers_list(year)
-    yearly_invoices_by_customer(year).keys.to_json.html_safe
+    yearly_invoices_by_customer(year).keys.map do |client_name|
+      client_name[0..5]
+    end.to_json.html_safe
   end
 
   def values_yearly_customers_turnover(year)
@@ -65,6 +74,17 @@ class DashboardPresenter
     default_monthes_value.merge(month_invoices)
   end
 
+  def subcontracts_by_month(year)
+    default_monthes_value = (1..12).map{ |month| [month, nil]}.to_h
+
+    if subcontracts_by_year[year]
+      month_subcontracts = subcontracts_by_year[year].group_by{ |subcontract| subcontract.invoice.sent_at.month}
+    else
+      month_subcontracts = {}
+    end
+    default_monthes_value.merge(month_subcontracts)
+  end
+
   def monthly_turnover(year)
     invoices_by_month(year).transform_values do |invoices_of_the_month|
       if invoices_of_the_month.nil?
@@ -75,7 +95,13 @@ class DashboardPresenter
     end
   end
 
-  # def h
-  #   ActionController::Base.helpers
-  # end
+  def monthly_subcontract_transferts(year)
+    subcontracts_by_month(year).transform_values do |subcontracts_of_the_month|
+      if subcontracts_of_the_month.nil?
+        0
+      else
+        subcontracts_of_the_month.sum(&:amount).to_f.fdiv(1000).round(2)
+      end
+    end
+  end
 end

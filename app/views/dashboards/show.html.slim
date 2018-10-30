@@ -51,66 +51,42 @@
 
 
 - content_for(:js) do
-  = javascript_include_tag "https://unpkg.com/frappe-charts@0.0.8/dist/frappe-charts.min.iife.js"
+  = javascript_include_tag "https://unpkg.com/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"
 
-  javascript:
-
-    const frappeChart = (
-      target,
-      title,
-      type,
-      year,
-      labels,
-      datasets,
-      xFormat,
-      yFormat
-    ) => {
-      const data = {
-        labels: labels,
-        datasets: datasets
-      }
-
-      const chart = new Chart({
-        parent: target,
-        title: title,
-        data: data,
-        type: type,
-        height: 250,
-
-        colors: ['#667797'],
-
-        format_tooltip_x: d => d + xFormat,
-        format_tooltip_y: d => d + yFormat
-      })
-    }
 
   - dashboard.years.each do |year|
     javascript:
-      frappeChart(
-        "#monthly-turnover-#{year}",
-        "<h1>C.A. mensuel #{year}</h1>",
-        "bar",
-        "#{year}",
-        JSON.parse("#{j dashboard.monthes}"),
-        [
-          {
-            title: "C.A. mensuel #{year}",
-            values: JSON.parse("#{dashboard.values_for_monthly_turnover(year)}")
+      new frappe.Chart(
+        "#monthly-turnover-#{year}", {
+          title: "C.A. et bénéfices mensuel #{year}",
+          type: "axis-mixed",
+          data:{
+            labels: JSON.parse("#{j dashboard.monthes}"),
+            datasets: [
+              {
+                name: "Bénéfices",
+                values: JSON.parse("#{dashboard.values_for_monthly_earnings(year)}"),
+                chartType: 'bar'
+              },
+              {
+                name: "C.A.",
+                values: JSON.parse("#{dashboard.values_for_monthly_turnover(year)}"),
+                chartType: 'line'
+              }
+            ]
           }
-        ],
-        "",
-        " k€"
-      )
+        }
+      );
 
-      frappeChart(
-        "#yearly-cutomers-percentage-#{year}",
-        "<h1>Répartion des clients en #{year}</h1>",
-        "percentage",
-        "#{year}",
-        JSON.parse("#{j dashboard.yearly_customers_list(year)}"),
-        [{
-          values: JSON.parse("#{dashboard.values_yearly_customers_turnover(year)}")
-        }],
-        "",
-        ""
-      )
+      new frappe.Chart(
+        "#yearly-cutomers-percentage-#{year}", {
+          title: "Répartion des clients en #{year}",
+          type: "percentage",
+          data: {
+            labels: JSON.parse("#{j dashboard.yearly_customers_list(year)}"),
+            datasets: [{
+              values: JSON.parse("#{dashboard.values_yearly_customers_turnover(year)}")
+            }]
+          }
+        }
+      );
