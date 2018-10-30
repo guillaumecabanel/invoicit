@@ -1,4 +1,4 @@
-- dashboard = DashboardPresenter.new(invoices: @sent_invoices)
+- dashboard = DashboardPresenter.new(invoices: @sent_invoices, subcontracts: @sent_subcontracts)
 
 .box
   .container
@@ -22,6 +22,22 @@
                 th Total H.T.
                 td.has-text-right
                   = humanized_money dashboard.invoices_for(year).sum(&:amount)
+                  | &nbsp;€ H.T.
+              tr
+                th Total Sous-traitance H.T.
+                td.has-text-right
+                  - if dashboard.subcontracts_for(year)
+                    = humanized_money dashboard.subcontracts_for(year).sum(&:amount)
+                  - else
+                    | 0
+                  | &nbsp;€ H.T.
+              tr
+                th Total bénéfices H.T.
+                td.has-text-right
+                  - if dashboard.subcontracts_for(year)
+                    = humanized_money (dashboard.invoices_for(year).sum(&:amount) - dashboard.subcontracts_for(year).sum(&:amount))
+                  - else
+                    = humanized_money dashboard.invoices_for(year).sum(&:amount)
                   | &nbsp;€ H.T.
               tr
                 th Total T.V.A.

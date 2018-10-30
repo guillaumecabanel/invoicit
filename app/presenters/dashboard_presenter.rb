@@ -4,6 +4,7 @@ class DashboardPresenter
   attr_reader :years
 
   def initialize(params = {})
+    @subcontracts = params[:subcontracts]
     @invoices = params[:invoices]
     @years = invoices_by_year.keys.sort.reverse
   end
@@ -31,11 +32,19 @@ class DashboardPresenter
     invoices_by_year[year]
   end
 
+  def subcontracts_for(year)
+    subcontracts_by_year[year]
+  end
+
   private
 
 
   def invoices_by_year
     @invoices.group_by{ |invoice| invoice.sent_at.year }.sort.to_h
+  end
+
+  def subcontracts_by_year
+    @subcontracts.group_by{ |subcontract| subcontract.invoice.sent_at.year }.sort.to_h
   end
 
   def yearly_invoices_by_customer(year)
