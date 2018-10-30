@@ -1,17 +1,14 @@
 class SubcontractsController < ApplicationController
-  before_action :set_partner, only: [:new, :create]
+  before_action :set_partner,     only: [:new, :create, :edit, :update]
+  before_action :set_invoices,    only: [:new, :create, :edit, :update]
+  before_action :set_subcontract, only: [:edit, :update]
 
   def new
     @subcontract = Subcontract.new
-    @invoices = policy_scope(Invoice)
     authorize @subcontract
-    authorize @invoices
   end
 
   def create
-    @invoices = policy_scope(Invoice)
-    authorize @invoices
-
     @subcontract = Subcontract.new(subcontract_params)
     @subcontract.partner = @partner
     authorize @subcontract
@@ -24,6 +21,17 @@ class SubcontractsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @subcontract.update(subcontract_params)
+      redirect_to partner_path(@partner)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def subcontract_params
@@ -33,8 +41,18 @@ class SubcontractsController < ApplicationController
     )
   end
 
+  def set_subcontract
+    @subcontract = Subcontract.find(params[:id])
+    authorize @subcontract
+  end
+
   def set_partner
     @partner = Partner.find(params[:partner_id])
     authorize @partner
+  end
+
+  def set_invoices
+    @invoices = policy_scope(Invoice)
+    authorize @invoices
   end
 end

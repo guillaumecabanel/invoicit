@@ -10,11 +10,11 @@ class InvoicePolicy < ApplicationPolicy
   end
 
   def show?
-    record.company.user == user
+    record.invoice.company.user == user
   end
 
   def update?
-    record.company.user == user
+    true
   end
 
   def send_via_email?

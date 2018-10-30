@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :partners, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :subcontracts, only: [:new, :create]
+    resources :subcontracts, only: [:new, :create, :edit, :update]
   end
 
   resource 'profile',   only: [:edit, :update]

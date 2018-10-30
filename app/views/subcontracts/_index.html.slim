@@ -7,6 +7,7 @@ table.table.is-striped.is-fullwidth
         small Client
       th.has-text-centered
         small Montant H.T.
+      th
 
   tbody
     - partner.subcontracts.each do |subcontract|
@@ -16,6 +17,8 @@ table.table.is-striped.is-fullwidth
         td.has-text-right
           = humanized_money subcontract.amount
           | &nbsp;€
+        th
+          = link_to "Modifier", edit_partner_subcontract_path(@partner, subcontract), class: 'button is-text is-small'
 
   tfoot
     tr
@@ -24,3 +27,4 @@ table.table.is-striped.is-fullwidth
       th.has-text-right
         = humanized_money partner.total_subcontract_amount
         | &nbsp;€
+      th

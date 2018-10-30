@@ -1,0 +1,25 @@
+= simple_form_for [partner, subcontract] do |f|
+  .field.is-horizontal
+    .field-label Facture
+    .field-body
+      = f.input :invoice_id, collection: invoices, label: false
+
+  .field.is-horizontal
+    .field-label Montant
+    .field-body
+      .field
+        .control.is-expanded
+          .field.has-addons
+            .control.has-icons-right
+              = f.input :amount, label: false
+              span.icon.is-right = icon 'eur'
+
+  hr
+  .field.is-grouped.is-grouped-right
+    .control
+      = link_to 'Annuler', partner_path(partner), class: 'button is-link'
+    .control
+      - if subcontract.new_record?
+        = f.submit 'Ajouter', class: 'button is-primary'
+      - else
+        = f.submit 'Modifier', class: 'button is-primary'
