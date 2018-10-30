@@ -7,6 +7,7 @@ nav.navbar
         = link_to 'Dashboard', dashboard_path, class: "navbar-item #{'is-active-link' if current_page? dashboard_path}"
         = link_to 'Clients', companies_path, class: "navbar-item #{'is-active-link' if current_page? companies_path}"
         = link_to 'Factures', invoices_path, class: "navbar-item #{'is-active-link' if current_page? invoices_path}"
+        = link_to 'Partenaires', partners_path, class: "navbar-item #{'is-active-link' if current_page? partners_path}"
     .navbar-end
       - if current_user
         .navbar-item

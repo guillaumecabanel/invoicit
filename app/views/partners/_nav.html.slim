@@ -1,0 +1,11 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to partner.full_name, partner_path(partner)
+        .field
+          = link_to 'Éditer', edit_partner_path(partner), class: 'button is-small is-link'
+
+      .column
+        

@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :companies, dependent: :destroy
   has_many :invoices, through: :companies
+  has_many :partners
   has_one :bank_account_statement, dependent: :destroy
 
   validates :first_name,

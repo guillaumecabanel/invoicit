@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125123716) do
+ActiveRecord::Schema.define(version: 20181030141921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,25 @@ ActiveRecord::Schema.define(version: 20180125123716) do
     t.index ["company_id"], name: "index_invoices_on_company_id"
   end
 
+  create_table "partners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_partners_on_user_id"
+  end
+
+  create_table "subcontracts", force: :cascade do |t|
+    t.bigint "invoice_id"
+    t.bigint "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.index ["invoice_id"], name: "index_subcontracts_on_invoice_id"
+    t.index ["partner_id"], name: "index_subcontracts_on_partner_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.integer "quantity"
@@ -131,5 +150,8 @@ ActiveRecord::Schema.define(version: 20180125123716) do
   add_foreign_key "expense_reports", "users"
   add_foreign_key "expenses", "expense_reports"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "partners", "users"
+  add_foreign_key "subcontracts", "invoices"
+  add_foreign_key "subcontracts", "partners"
   add_foreign_key "tasks", "invoices"
 end

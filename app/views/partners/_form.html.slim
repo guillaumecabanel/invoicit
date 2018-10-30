@@ -1,0 +1,22 @@
+= simple_form_for partner do |f|
+  .field.is-horizontal
+    .field-label.is-normal
+      label.label Contact
+    .field-body
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :first_name, label: false, placeholder: 'Prénom'
+          span.icon.is-small.is-left = icon 'user'
+      .field
+        .control.is-expanded.has-icons-left
+          = f.input :last_name, label: false, placeholder: 'Nom'
+          span.icon.is-small.is-left = icon 'user'
+  hr
+  .field.is-grouped.is-grouped-right
+    .control
+      = link_to 'Annuler', partners_path, class: 'button is-link'
+    .control
+      - if partner.new_record?
+        = f.submit 'Ajouter', class: 'button is-primary'
+      - else
+        = f.submit 'Mettre à jour', class: 'button is-primary'

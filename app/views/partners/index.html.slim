@@ -1,0 +1,16 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2 Partenaires
+
+.container
+  .columns
+    .column.is-one-quarter
+      .field
+        = link_to 'Nouveau partenaire', new_partner_path,
+                  class: 'button is-fullwidth is-primary is-outlined'
+
+    .column
+      - @partners.each do |partner|
+        = render 'partner_card', partner: partner

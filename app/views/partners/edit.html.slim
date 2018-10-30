@@ -1,0 +1,12 @@
+.box
+  .container
+    .columns
+      .column.is-one-quarter
+        h2.title.is-size-2
+          = link_to @partner.full_name, partner_path(@partner)
+
+.container
+  .columns
+    .column.is-half-desktop.is-offset-3-desktop
+      .box
+        = render 'partners/form', partner: @partner

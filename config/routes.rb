@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resource 'profile', only: [:edit, :update]
+  resources :partners, only: [:index, :show, :new, :create, :edit, :update]
+
+  resource 'profile',   only: [:edit, :update]
   resource 'dashboard', only: [:show]
   resource 'bank_account_statement', only: [:new, :create, :edit, :update]
 
