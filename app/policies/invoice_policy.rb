@@ -10,7 +10,7 @@ class InvoicePolicy < ApplicationPolicy
   end
 
   def show?
-    record.invoice.company.user == user
+    record.company.user == user
   end
 
   def update?
