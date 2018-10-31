@@ -20,6 +20,10 @@ class DashboardPresenter
     end
   end
 
+  def average_monthly_earning(year)
+    (values_for_monthly_earnings(year).sum / values_for_monthly_earnings(year).count).round(2)
+  end
+
   def yearly_customers_list(year)
     yearly_invoices_by_customer(year).keys.map do |client_name|
       client_name[0..5]

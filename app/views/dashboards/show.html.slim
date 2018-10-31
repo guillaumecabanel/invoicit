@@ -73,6 +73,13 @@
                 values: JSON.parse("#{dashboard.values_for_monthly_turnover(year)}"),
                 chartType: 'line'
               }
+            ],
+            yMarkers: [
+                {
+                    label: "Moyenne mensuelle #{ JSON.parse("#{dashboard.average_monthly_earning(year)}")}k€",
+                    value: JSON.parse("#{dashboard.average_monthly_earning(year)}"),
+                    options: { labelPos: 'left' }
+                }
             ]
           }
         }
