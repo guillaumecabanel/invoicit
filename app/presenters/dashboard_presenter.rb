@@ -16,7 +16,7 @@ class DashboardPresenter
   def values_for_monthly_earnings(year)
     monthly_pairs = monthly_turnover(year).values.zip(monthly_subcontract_transferts(year).values)
     monthly_pairs.map do |turnover, subcontract_transfert|
-      turnover - subcontract_transfert
+      (turnover - subcontract_transfert).round(2)
     end
   end
 
