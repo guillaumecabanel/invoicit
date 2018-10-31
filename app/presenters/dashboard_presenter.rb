@@ -21,7 +21,11 @@ class DashboardPresenter
   end
 
   def average_monthly_earning(year)
-    (values_for_monthly_earnings(year).sum / values_for_monthly_earnings(year).count).round(2)
+    if year == Date.today.year
+      (values_for_monthly_earnings(year).sum / Date.today.month).round(2)
+    else
+      (values_for_monthly_earnings(year).sum / 12).round(2)
+    end
   end
 
   def yearly_customers_list(year)
