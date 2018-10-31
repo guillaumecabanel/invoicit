@@ -22,6 +22,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'slim'
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'
+gem 'bugsnag'
 
 gem "sprockets"
 gem "sprockets-es6"
