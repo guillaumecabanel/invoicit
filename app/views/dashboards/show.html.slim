@@ -87,7 +87,20 @@
 
       new frappe.Chart(
         "#yearly-cutomers-percentage-#{year}", {
-          title: "Répartion des clients en #{year}",
+          title: "Répartition des clients en #{year}",
+          type: "percentage",
+          data: {
+            labels: JSON.parse("#{j dashboard.yearly_customers_list(year)}"),
+            datasets: [{
+              values: JSON.parse("#{dashboard.values_yearly_customers_turnover(year)}")
+            }]
+          }
+        }
+      );
+
+      new frappe.Chart(
+        "#yearly-cutomers-percentage-revenu#{year}", {
+          title: "Répartition des clients en #{year}",
           type: "percentage",
           data: {
             labels: JSON.parse("#{j dashboard.yearly_customers_list(year)}"),
