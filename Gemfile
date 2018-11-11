@@ -32,6 +32,9 @@ gem 'money-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+# CVE-2018-16468 Vulnerable versions: < 2.2.3 Patched version: 2.2.3 
+gem "loofah", ">= 2.2.3"
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
